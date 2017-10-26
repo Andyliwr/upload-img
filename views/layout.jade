@@ -1,0 +1,13 @@
+include ../bower_components/jade-bootstrap/_bootstrap
+doctype html
+html
+  head
+  title= title
+  link(rel='stylesheet', href='/styles/style.css')
+body
+  +navbar("Project name","dropdown_menu")
+    +nav_item("index.html","active") Home
+    +nav_item("index.html") About
+    +nav_item("index.html") Contact
+  block content
+  
