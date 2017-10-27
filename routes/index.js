@@ -12,4 +12,10 @@ router.get('/foo', function *(next) {
   });
 });
 
+router.get('/login', function *(next) {
+  yield this.render('login', {
+    title: '登录'
+  });
+});
+
 module.exports = router;

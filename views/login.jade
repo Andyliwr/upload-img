@@ -1,0 +1,16 @@
+extends layout
+
+block content
+  div#login-container.container
+    div.well
+      form.form-signin.form-horizontal
+        legend 请登录
+        label.sr-only(for='inputEmail') Email address
+        input#inputEmail.form-control(type='email', placeholder='Email address', required='', autofocus='')
+        label.sr-only(for='inputPassword') Password
+        input#inputPassword.form-control(type='password', placeholder='Password', required='')
+        .checkbox
+          label
+            input(type='checkbox', value='remember-me')
+            | 记住密码
+        button.btn.btn-primary(type='submit') 登录

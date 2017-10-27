@@ -6,14 +6,58 @@ html
   link(rel='stylesheet', href='/styles/style.css')
   link(rel='stylesheet', href='/styles/iconfont.css')
 body
-  +navbar("图片上传","dropdown_menu")
-    +nav_item("index.html","active") 首页
-    +nav_item("index.html") 使用说明
-    +nav_item("index.html") 关于我们
-    +nav_item("index.html", 'visible-xs hidden-sm') 登录
-    +nav_item("index.html", 'visible-xs hidden-sm') 注册
-  div.login-state.hidden-xs
-    a(src='/login') 登录
-    span &nbsp;/&nbsp;
-    a(src='/registe') 注册
-  block content
+  div.content
+    nav.navbar.navbar-default
+      div.container
+        div.navbar-header
+          button.navbar-toggle.collapsed(type="button", data-toggle="collapse", data-target="#top-navbar-collapse", aria-expanded="false")
+            span.sr-only Toggle navigation
+            span.icon-bar
+            span.icon-bar
+            span.icon-bar
+          a.navbar-brand(href="/")
+           img#logo(src="/images/logo.svg")
+           span 图片上传
+        div#top-navbar-collapse.collapse.navbar-collapse
+          ul.nav.navbar-nav
+            li.active
+              a(href="#") 首页
+                span.sr-only (current)
+            li
+              a(href="/help") 使用帮助
+            li
+              a(href="/about") 关于我们
+          ul.nav.navbar-nav.navbar-right
+            li
+              span.padding
+               a(href='/login') 登录
+               span &nbsp;/&nbsp;
+               a(href='/registe') 注册
+            li.dropdown(style="display: none")
+              a.dropdown-toggle(href="#", data-toggle="dropdown", role="button", aria-haspopup="true", aria-expanded="false") Andyliwr 
+                span.caret
+              ul.dropdown-menu
+                li
+                  a(href="#") 个人中心
+                li
+                  a(href="#") 上传历史
+                li.divider(role="separator")
+                li
+                  a(href="/loginout") 退出登录
+    block content
+
+  footer.footer
+    div.container
+      ul.footer-links
+        li
+          a(href="https://github.com/Andyliwr/ldk-upload-img.git" target="_blank") Github仓库
+        li
+          a(href="https://github.com/Andyliwr/ldk-upload-img/issues") 提问
+        li
+          a(href="mailto:andyliwr@outlook.com") 联系作者
+        li
+          a(href="/about") 关于
+      p.design
+        | Designed and built with all the love in the world by 
+        a(href="mailto:andyliwr@outlook.com") @andyliwr.
+        p 本项目源码受 MIT开源协议保护。
