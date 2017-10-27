@@ -1,13 +1,19 @@
-include ../bower_components/jade-bootstrap/_bootstrap
+include ../bower_components/jade-bootstrap/_bootstrap 
 doctype html
 html
   head
   title= title
   link(rel='stylesheet', href='/styles/style.css')
+  link(rel='stylesheet', href='/styles/iconfont.css')
 body
-  +navbar("Project name","dropdown_menu")
-    +nav_item("index.html","active") Home
-    +nav_item("index.html") About
-    +nav_item("index.html") Contact
+  +navbar("图片上传","dropdown_menu")
+    +nav_item("index.html","active") 首页
+    +nav_item("index.html") 使用说明
+    +nav_item("index.html") 关于我们
+    +nav_item("index.html", 'visible-xs hidden-sm') 登录
+    +nav_item("index.html", 'visible-xs hidden-sm') 注册
+  div.login-state.hidden-xs
+    a(src='/login') 登录
+    span &nbsp;/&nbsp;
+    a(src='/registe') 注册
   block content
-  

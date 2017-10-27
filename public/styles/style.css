@@ -1,7 +1,119 @@
+@font-face {
+	font-family: 'webfont';
+	src: url('//at.alicdn.com/t/webfont_x4rf8lst8s62yb9.eot');
+	/* IE9*/
+	src: url('//at.alicdn.com/t/webfont_x4rf8lst8s62yb9.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+	url('//at.alicdn.com/t/webfont_x4rf8lst8s62yb9.woff') format('woff'), /* chrome、firefox */
+	url('//at.alicdn.com/t/webfont_x4rf8lst8s62yb9.ttf') format('truetype'), /* chrome、firefox、opera、Safari, Android, iOS 4.2+*/
+	url('//at.alicdn.com/t/webfont_x4rf8lst8s62yb9.svg#NotoSansHans-DemiLight') format('svg');
+	/* iOS 4.1- */
+}
+
 body {
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+	font: 14px "webfont", Arial, sans-serif;
 }
 
 a {
-  color: #00B7FF;
+	color: #00B7FF;
+}
+
+nav[role="navigation"] {
+	margin-bottom: 0px;
+}
+
+nav[role="navigation"] .navbar-brand:before {
+	position: absolute;
+	content: url(../images/logo.svg);
+	display: inline-block;
+	top: 50%;
+	left: 40px;
+	margin-top: -23px;
+}
+
+nav[role="navigation"] .navbar-brand {
+	padding-left: 100px;
+	vertical-align: middle;
+	font-size: 20px;
+}
+
+.login-state {
+	position: absolute;
+	right: 30px;
+	top: 0;
+	padding: 23px 15px;
+}
+
+.login-state>a {
+	cursor: pointer;
+}
+
+#index-container {
+	position: relative;
+}
+
+#index-container .bg {
+	height: 250px;
+	background: url(http://oyh0gj8ht.bkt.clouddn.com//index/bg/bg01.jpg) no-repeat;
+	background-size: cover;
+	background-position: center;
+	filter: url(blur.svg#blur);
+	/* FireFox, Chrome, Opera */
+	-webkit-filter: blur(1px);
+	/* Chrome, Opera */
+	-moz-filter: blur(1px);
+	-ms-filter: blur(1px);
+	filter: blur(1px);
+	filter: progid:DXImageTransform.Microsoft.Blur(PixelRadius=1, MakeShadow=false);
+	z-index: -1;
+}
+
+#upload-area {
+	position: absolute;
+	top: 45px;
+	left: 50%;
+	margin-left: -200px;
+	height: 160px;
+	width: 400px;
+	color: #fff;
+	border: 2px dashed #fff;
+	border-radius: 6px;
+	text-align: center;
+	line-height: .6em;
+	padding-top: 45px;
+	cursor: pointer;
+}
+
+#upload-area:hover .icon-upload {
+	color: #00B7FF;
+}
+
+#upload-area .icon-upload {
+	font-size: 30px;
+}
+
+#upload-area p.big-text {
+	margin-top: 30px;
+}
+
+#upload-area p.small-text {
+	font-size: 12px;
+}
+
+#index-container .introduce {
+	padding: 20px 8% 0 8%;
+}
+
+@media (max-width: 768px) {
+	nav[role="navigation"] .navbar-brand:before {
+		display: none;
+	}
+	nav[role="navigation"] .navbar-brand {
+		padding-left: 15px;
+	}
+	#upload-area {
+		left: 10%;
+		margin-left: 0;
+		width: 80%;
+		color: #fff;
+	}
 }
