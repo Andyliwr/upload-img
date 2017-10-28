@@ -36,3 +36,7 @@ html(lang="en")
 
 ### 编写时注意点
 jade因为不支持同时在一个文件中使用`tab`和空格缩进，所以建议在使用`sublime`开发的时候将右下角的`using space`打上勾，这样`sublime`就会默认将`tab`替换成空格
+
+### 模型
+#### user
+(username, password, avatar, email, history, settings)
