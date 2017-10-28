@@ -1,21 +1,33 @@
-const router = require('koa-router')();
+const router = require('koa-router')()
 
-router.get('/', function *(next) {
-  yield this.render('index', {
+router.get('/', async (ctx, next) => {
+  await ctx.render('index', {
     title: '图片上传'
-  });
-});
+  })
+})
 
-router.get('/foo', function *(next) {
-  yield this.render('index', {
-    title: '个人中心'
-  });
-});
-
-router.get('/login', function *(next) {
-  yield this.render('login', {
+router.get('/login', async (ctx, next) => {
+  await ctx.render('login', {
     title: '登录'
-  });
-});
+  })
+})
 
-module.exports = router;
+router.get('/registe', async (ctx, next) => {
+  await ctx.render('registe', {
+    title: '注册'
+  })
+})
+
+router.get('/help', async (ctx, next) => {
+  await ctx.render('help', {
+    title: '使用帮助'
+  })
+})
+
+router.get('/about', async (ctx, next) => {
+  await ctx.render('about', {
+    title: '关于我们'
+  })
+})
+
+module.exports = router
