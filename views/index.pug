@@ -1,0 +1,70 @@
+
+extends layout
+
+block content
+  div#index-container
+    div.bg
+    div#upload-area
+      i.iconfont.icon-upload
+      p.big-text 拖放图片或者点击上传
+      p.small-text 最多20张图片，总大小不超过5M
+    div.introduce
+      div.section.clearfix
+        h4.text-center.text-bold 小迪图片上传工具
+        div.features
+          div.feature-item.col-xs-12.col-sm-6.col-md-4
+            img(src="/images/feature01.png")
+            div
+              h4 拖拽上传
+              p 将本地图片拖放到白框中就能实现图片自动上传，也可以选择手动打开文件上传，两种方式任君选择
+          div.feature-item.col-xs-12.col-sm-6.col-md-4
+            img(src="/images/feature02.png")
+            div
+              h4 图片压缩
+              p 在"个人中心"设置"上传自动压缩"，即可实现上传过程中对图片压缩，这样生成的图片链接加载更快哦~
+          div.feature-item.col-xs-12.col-sm-6.col-md-4
+            img(src="/images/feature03.png")
+            div
+              h4 图片格式化
+              p 上传完成后的图片可以通过url传参，设置图片宽高，裁剪图片，以及添加图片水印等等..
+      div.section.clearfix
+        h4.text-center.text-bold 图片压缩
+        p.text-center.des 调用tingpng的压缩api，能将png图片压缩40%左右，从而节省大量空间，便于提升网络加载速度。
+        div.yasuo.text-center
+          div.img
+            img(src="/images/tinypng.png")
+            p 原始图片
+            p 文件大小：
+              span.text-red 67KB
+          span vs
+          div.img
+            img(src="/images/tinypng.png")
+            p 压缩之后的图片
+            p 文件大小：
+              span.text-red 18KB
+      div.section.clearfix
+        h4.text-center.text-bold 使用实例
+        p.text-center.des
+          |精心设计的上传动画，让你清楚得知道图片的上传状态。此外小迪图片上传工具在
+          <br>
+          |上传成功之后会自动帮你生成引用图片的代码，对于常见图片处理也会有简单的表单帮助你快速设置。
+        div#carousel-generic.carousel.slide(data-ride="carousel")
+          ol.carousel-indicators
+            li.active(data-target="#carousel-generic", data-slide-to="0")
+            li(data-target="#carousel-generic", data-slide-to="1")
+            li(data-target="#carousel-generic", data-slide-to="2")
+          div.carousel-inner(role="listbox")
+            div.item.active
+              img(src="/images/slide1.jpg", alt="xxx")
+              div.carousel-caption
+            div.item
+              img(src="/images/slide2.jpg", alt="xxx")
+              div.carousel-caption
+          a.left.carousel-control(href="#carousel-generic", role="button", data-slide="prev")
+            span.glyphicon.glyphicon-chevron-left(aria-hidden="true")
+            span.sr-only 前一个
+          a.right.carousel-control(href="#carousel-generic", role="button", data-slide="next")
+            span.glyphicon.glyphicon-chevron-right(aria-hidden="true")
+            span.sr-only 后一个
+
+

@@ -1,0 +1,27 @@
+{
+  "name": "ldk-upload-img",
+  "authors": [
+    "andyliwr <andyliwr@outlook.com>"
+  ],
+  "description": "图片上传工具",
+  "main": "",
+  "keywords": [
+    "upload",
+    "img"
+  ],
+  "license": "MIT",
+  "homepage": "http://img.andylistudio.com",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "^3.2.1",
+    "bootstrap": "^3.3.7",
+    "jade-bootstrap": "^1.1.0"
+  }
+}
