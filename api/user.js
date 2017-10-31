@@ -1,33 +1,27 @@
 import { User } from '../models'
 
-export default function(router) {
-    router.post('/api/signin', async(ctx, next) => {
+export default function (router) {
+    router.post('/api/signin', async (ctx, next) => {
         let { email, password } = ctx.request.body
 
         ctx.body = await User.login(ctx, email, password)
     })
 
-    router.post('/api/signup', async(ctx, next) => {
+    router.post('/api/signup', async (ctx, next) => {
         let { username, email, password, repassword } = ctx.request.body
-        console.log(ctx.request.query)
-        console.log(username, email, password, repassword)
-        // if (password !== repassword) {
-        //     ctx.body = { ok: false, msg: '两次密码不一致', user: null }
-        // } else {
-        //     let user = new User({
-        //         username: username,
-        //         avatar: 'https://dummyimage.com/100x100/4A7BF7&text=' + username.substring(0, 1),
-        //         email: email,
-        //         password: password,
-        //         history: [],
-        //         settings: []
-        //     })
-
-        //     console.log('user0', user)
-        //     console.log('User', User)
-
-        //     ctx.body = await User.add(ctx, user)
-        // }
+        if (password !== repassword) {
+            ctx.body = { ok: false, msg: '两次密码不一致', user: null }
+        } else {
+            let user = new User({
+                username: username,
+                avatar: 'https://dummyimage.com/100x100/4A7BF7&text=' + username.substring(0, 1),
+                email: email,
+                password: password,
+                history: [],
+                settings: []
+            })
+            ctx.body = await User.add(ctx, user)
+        }
     })
 
     router.get('/api/user', (ctx, next) => {
@@ -45,7 +39,7 @@ export default function(router) {
 
 
     // 检验用户名是否重复
-    router.get('/api/checkname', async(ctx, next) => {
+    router.get('/api/checkname', async (ctx, next) => {
         let name = ctx.request.query.name
         if (name) {
             ctx.body = await User.checkname(ctx, name)
@@ -55,7 +49,7 @@ export default function(router) {
     })
 
     // 检验用户名是否重复
-    router.get('/api/checkemail', async(ctx, next) => {
+    router.get('/api/checkemail', async (ctx, next) => {
         let email = ctx.request.query.email
         if (email) {
             ctx.body = await models.user.checkemail(ctx, email)

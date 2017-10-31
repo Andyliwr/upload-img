@@ -4,7 +4,7 @@
 代码如下：
 ```jade
 doctype html
-html(lang="en")
+html(lang="zh-cn")
 	head
 		meta(charset="UTF-8")
 		meta(http-equiv="X-UA-Compatible", content="IE=edge")
@@ -50,3 +50,5 @@ jade因为不支持同时在一个文件中使用`tab`和空格缩进，所以�
 ### 模型
 #### user
 (username, password, avatar, email, history, settings)
+https://www.npmjs.com/package/koa-session2
+redis 可视化工具 https://github.com/luin/medis
