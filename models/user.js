@@ -15,7 +15,7 @@ userSchema.statics.add = async function(ctx, user) {
     if (document) {
         return { ok: false, msg: '此邮箱已注册' }
     }
-
+    console.log('user', user)
     user.password = md5(user.password)
     let u = await user.save()
     user.password = null

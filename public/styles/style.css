@@ -1,324 +1,330 @@
 @font-face {
-	font-family: 'webfont';
-	src: url('//at.alicdn.com/t/webfont_x4rf8lst8s62yb9.eot');
-	/* IE9*/
-	src: url('//at.alicdn.com/t/webfont_x4rf8lst8s62yb9.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
-	url('//at.alicdn.com/t/webfont_x4rf8lst8s62yb9.woff') format('woff'), /* chrome、firefox */
-	url('//at.alicdn.com/t/webfont_x4rf8lst8s62yb9.ttf') format('truetype'), /* chrome、firefox、opera、Safari, Android, iOS 4.2+*/
-	url('//at.alicdn.com/t/webfont_x4rf8lst8s62yb9.svg#NotoSansHans-DemiLight') format('svg');
-	/* iOS 4.1- */
+    font-family: 'webfont';
+    src: url('//at.alicdn.com/t/webfont_x4rf8lst8s62yb9.eot');
+    /* IE9*/
+    src: url('//at.alicdn.com/t/webfont_x4rf8lst8s62yb9.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+    url('//at.alicdn.com/t/webfont_x4rf8lst8s62yb9.woff') format('woff'), /* chrome、firefox */
+    url('//at.alicdn.com/t/webfont_x4rf8lst8s62yb9.ttf') format('truetype'), /* chrome、firefox、opera、Safari, Android, iOS 4.2+*/
+    url('//at.alicdn.com/t/webfont_x4rf8lst8s62yb9.svg#NotoSansHans-DemiLight') format('svg');
+    /* iOS 4.1- */
 }
 
 body {
-	font: 14px "webfont", Arial, sans-serif;
+    font: 14px "webfont", Arial, sans-serif;
 }
 
-html,body{  
-  height: 100%;  
-  margin: 0;  
-  padding: 0;  
+html,
+body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
 }
 
 
-.content{  
-  box-sizing: border-box;/*为元素指定的任何内边距和边框都将在已设定的宽度和高度内进行绘制*/  
-  min-height: 100%;  
-  padding-bottom: 180px;  
+.content {
+    box-sizing: border-box;
+    /*为元素指定的任何内边距和边框都将在已设定的宽度和高度内进行绘制*/
+    min-height: 100%;
+    padding-bottom: 180px;
 }
 
 a {
-	color: #00B7FF;
+    color: #00B7FF;
 }
 
-.text-bold{
-	font-weight: bold;
+.text-bold {
+    font-weight: bold;
 }
 
-.text-red{
-	color: #e51c23
+.text-red {
+    color: #e51c23
 }
 
 .btn {
-  text-transform: uppercase;
-  border: none;
-  -webkit-box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.4);
-  box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.4);
-  -webkit-transition: all 0.4s;
-  -o-transition: all 0.4s;
-  transition: all 0.4s;
+    text-transform: uppercase;
+    border: none;
+    -webkit-box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.4);
+    box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.4);
+    -webkit-transition: all 0.4s;
+    -o-transition: all 0.4s;
+    transition: all 0.4s;
 }
 
-#logo{
-	position: absolute;
-	height: 72%;
-	top: 50%;
-	transform: translateY(-50%);
+#logo {
+    position: absolute;
+    height: 72%;
+    top: 50%;
+    transform: translateY(-50%);
 }
 
-.navbar{
-	margin-bottom: 0;
+.navbar {
+    margin-bottom: 0;
 }
 
-.navbar .navbar-brand{
-	width: 150px;
-	position: relative;
+.navbar .navbar-brand {
+    width: 150px;
+    position: relative;
 }
 
-.navbar .navbar-brand>span{
-	margin-left: 46px;
-	font-size: 18px;
-	position: relative;
-	top: -3px;
+.navbar .navbar-brand>span {
+    margin-left: 46px;
+    font-size: 18px;
+    position: relative;
+    top: -3px;
 }
 
-.navbar-right .padding{
-	padding: 20.5px 15px;
-	line-height: 20px;
-	display: block;
+.navbar-right .padding {
+    padding: 20.5px 15px;
+    line-height: 20px;
+    display: block;
 }
 
-.navbar-right .padding > a{
-	cursor: pointer;
+.navbar-right .padding>a {
+    cursor: pointer;
 }
 
 .login-state>a {
-	cursor: pointer;
+    cursor: pointer;
 }
 
 #index-container {
-	position: relative;
+    position: relative;
 }
 
 #index-container .bg {
-	height: 250px;
-	background: url(http://oyh0gj8ht.bkt.clouddn.com//index/bg/bg01.jpg) no-repeat;
-	background-size: cover;
-	background-position: center;
-	z-index: -1;
+    height: 250px;
+    background: url(http://oyh0gj8ht.bkt.clouddn.com//index/bg/bg01.jpg) no-repeat;
+    background-size: cover;
+    background-position: center;
+    z-index: -1;
 }
 
 #upload-area {
-	position: absolute;
-	top: 45px;
-	left: 50%;
-	margin-left: -200px;
-	height: 160px;
-	width: 400px;
-	color: #fff;
-	border: 2px dashed #fff;
-	border-radius: 6px;
-	text-align: center;
-	line-height: .6em;
-	padding-top: 45px;
-	cursor: pointer;
+    position: absolute;
+    top: 45px;
+    left: 50%;
+    margin-left: -200px;
+    height: 160px;
+    width: 400px;
+    color: #fff;
+    border: 2px dashed #fff;
+    border-radius: 6px;
+    text-align: center;
+    line-height: .6em;
+    padding-top: 45px;
+    cursor: pointer;
 }
 
 #upload-area:hover .icon-upload {
-	color: #00B7FF;
+    color: #00B7FF;
 }
 
 #upload-area .icon-upload {
-	font-size: 30px;
+    font-size: 30px;
 }
 
 #upload-area p.big-text {
-	margin-top: 30px;
+    margin-top: 30px;
 }
 
 #upload-area p.small-text {
-	font-size: 12px;
+    font-size: 12px;
 }
 
 #index-container .introduce {
-	padding: 20px 8% 0 8%;
+    padding: 20px 8% 0 8%;
 }
 
-#index-container .feature-item{
-	position: relative;
-	padding: 20px;
+#index-container .feature-item {
+    position: relative;
+    padding: 20px;
 }
 
-#index-container .feature-item>img{
-	position: absolute;
-	left: 20px;
-	top: 50%;
-	transform: translateY(-50%);
-	display: inline-block;
-	width: 60px;
-	position: 
+#index-container .feature-item>img {
+    position: absolute;
+    left: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    display: inline-block;
+    width: 60px;
+    position:
 }
 
-#index-container .feature-item>div{
-	display: inline-block;
-	width: 100%;
-	padding-left: 70px;
+#index-container .feature-item>div {
+    display: inline-block;
+    width: 100%;
+    padding-left: 70px;
 }
 
-#index-container .section>h4{
-	font-size: 20px;
+#index-container .section>h4 {
+    font-size: 20px;
 }
 
-#index-container .yasuo{
-	margin: 20px 0;
+#index-container .yasuo {
+    margin: 20px 0;
 }
 
-#index-container .yasuo .img{
-	display: inline-block;
-	vertical-align: middle;
+#index-container .yasuo .img {
+    display: inline-block;
+    vertical-align: middle;
 }
 
-#index-container .yasuo .img>img{
-	width: 200px;
-	border: 1px solid #ccc;
-	margin-bottom: 10px;
+#index-container .yasuo .img>img {
+    width: 200px;
+    border: 1px solid #ccc;
+    margin-bottom: 10px;
 }
 
-#index-container .yasuo .img>p{
-	margin-bottom: 0;
+#index-container .yasuo .img>p {
+    margin-bottom: 0;
 }
 
-#index-container .yasuo>span{
-	display: inline-block;
-	width: 80px;
-	vertical-align: middle;
-	margin-top: -40px;
-	font-size: 20px;
+#index-container .yasuo>span {
+    display: inline-block;
+    width: 80px;
+    vertical-align: middle;
+    margin-top: -40px;
+    font-size: 20px;
 }
 
-#index-container .section .des{
-	margin-top: 30px;
+#index-container .section .des {
+    margin-top: 30px;
 }
 
-#index-container .section h4{
-	margin-top: 20px;
+#index-container .section h4 {
+    margin-top: 20px;
 }
 
-#carousel-generic{
-	margin: 20px auto;
-	max-width: 800px;
+#carousel-generic {
+    margin: 20px auto;
+    max-width: 800px;
 }
 
 .footer {
-	 height: 180px;  
-   margin-top: -180px;  
-  padding-top: 50px;
-  padding-bottom: 50px;
-  color: #99979c;
-  text-align: center;
-  background-color: #2a2730;
-}
-.footer a {
-  color: #fff;
-}
-.footer-links {
-  padding-left: 0;
-  margin-bottom: 20px;
-}
-.footer-links li {
-  display: inline-block;
-  list-style: none;
+    height: 180px;
+    margin-top: -180px;
+    padding-top: 50px;
+    padding-bottom: 50px;
+    color: #99979c;
+    text-align: center;
+    background-color: #2a2730;
 }
 
-.footer-links li + li {
-  margin-left: 15px;
+.footer a {
+    color: #fff;
+}
+
+.footer-links {
+    padding-left: 0;
+    margin-bottom: 20px;
+}
+
+.footer-links li {
+    display: inline-block;
+    list-style: none;
+}
+
+.footer-links li+li {
+    margin-left: 15px;
 }
 
 #login-container .well,
 #registe-container .well {
-  max-width: 330px;
-  margin: 30px auto 0 auto;
-  padding: 30px;
+    max-width: 330px;
+    margin: 30px auto 0 auto;
+    padding: 30px;
 }
 
-#registe-container .well{
-	margin-bottom: 30px;
+#registe-container .well {
+    margin-bottom: 30px;
 }
 
-.form legend{
-	padding: 10px 0;
-	margin-bottom: 0;
-}
-
-.form .checkbox {
-  margin-bottom: 10px;
+.form legend {
+    padding: 10px 0;
+    margin-bottom: 0;
 }
 
 .form .checkbox {
-  font-weight: normal;
+    margin-bottom: 10px;
+}
+
+.form .checkbox {
+    font-weight: normal;
 }
 
 .form .form-control {
-	position: relative;
-	height: auto;
-	-webkit-box-sizing: border-box;
-	-moz-box-sizing: border-box;
-	box-sizing: border-box;
-	padding: 10px;
-	font-size: 16px;
+    position: relative;
+    height: auto;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    padding: 10px;
+    font-size: 16px;
 }
 
 .form .form-control:focus {
-  z-index: 2;
+    z-index: 2;
 }
 
 .form input[type="email"] {
-  margin-bottom: -1px;
-  border-bottom-right-radius: 0;
-  border-bottom-left-radius: 0;
+    margin-bottom: -1px;
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
 }
 
 .form input[type="password"] {
-  margin-bottom: 10px;
-  border-top-left-radius: 0;
-  border-top-right-radius: 0;
+    margin-bottom: 10px;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
 }
 
-#registe-container #inputPassword{
-  margin-bottom: 0px;
+#registe-container #inputPassword {
+    margin-bottom: 0px;
 }
 
-.form .group{
-	position: relative;
+.form .group {
+    position: relative;
 }
 
-.form .group>i{
-	position: absolute;
-  right: 4px;
-  top: 50%;
-  transform: translateY(-50%);
+.form .group>i {
+    position: absolute;
+    right: 4px;
+    top: 50%;
+    transform: translateY(-50%);
+    display: none;
 }
 
-.form .btn{
-	width: 100%;
+.form .btn {
+    width: 100%;
 }
 
 
 @media (min-width: 768px) {
-  .footer {
-    text-align: left;
-  }
-  .footer p {
-    margin-bottom: 0;
-  }
+    .footer {
+        text-align: left;
+    }
+    .footer p {
+        margin-bottom: 0;
+    }
 }
 
 @media (max-width: 768px) {
-	nav[role="navigation"] .navbar-brand:before {
-		display: none;
-	}
-	nav[role="navigation"] .navbar-brand {
-		padding-left: 15px;
-	}
-	#upload-area {
-		left: 10%;
-		margin-left: 0;
-		width: 80%;
-		color: #fff;
-	}
-	#index-container .yasuo>span{
-		display: block;
-		text-align: center;
-		width: 100%;
-		margin: 20px 0;
-	}
+    nav[role="navigation"] .navbar-brand:before {
+        display: none;
+    }
+    nav[role="navigation"] .navbar-brand {
+        padding-left: 15px;
+    }
+    #upload-area {
+        left: 10%;
+        margin-left: 0;
+        width: 80%;
+        color: #fff;
+    }
+    #index-container .yasuo>span {
+        display: block;
+        text-align: center;
+        width: 100%;
+        margin: 20px 0;
+    }
 }
