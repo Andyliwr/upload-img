@@ -7,6 +7,12 @@ html
   link(rel='stylesheet', href='/styles/iconfont.css')
 body
   div.content
+    p#logined(style="display:none")= logined
+    div.alert.alert-dismissible.alert-danger
+      button.close &times;
+      p
+        span#tip-type 错误！
+        span#tip-words assdkahsdkjashd
     nav.navbar.navbar-default
       div.container
         div.navbar-header
@@ -28,23 +34,24 @@ body
             li
               a(href="/about") 关于我们
           ul.nav.navbar-nav.navbar-right
-            p=login
-            li
-              span.padding
-               a(href='/login') 登录
-               span &nbsp;/&nbsp;
-               a(href='/registe') 注册
-            li.dropdown(style="display: none")
-              a.dropdown-toggle(href="#", data-toggle="dropdown", role="button", aria-haspopup="true", aria-expanded="false") Andyliwr 
-                span.caret
-              ul.dropdown-menu
-                li
-                  a(href="#") 个人中心
-                li
-                  a(href="#") 上传历史
-                li.divider(role="separator")
-                li
-                  a(href="/loginout") 退出登录
+            if (!logined)
+              li
+                span.padding
+                 a(href='/login') 登录
+                 span &nbsp;/&nbsp;
+                 a(href='/registe') 注册
+            else
+              li.dropdown
+                a.dropdown-toggle(href="#", data-toggle="dropdown", role="button", aria-haspopup="true", aria-expanded="false") Andyliwr 
+                  span.caret
+                ul.dropdown-menu
+                  li
+                    a(href="#") 个人中心
+                  li
+                    a(href="#") 上传历史
+                  li.divider(role="separator")
+                  li
+                    a(href="/loginout") 退出登录
     block content
 
   footer.footer
@@ -62,3 +69,4 @@ body
         | Designed and built with all the love in the world by 
         a(href="mailto:andyliwr@outlook.com") @andyliwr.
         p 本项目源码受 MIT开源协议保护。
+  script(type="text/javascript" src="/scripts/share.js")

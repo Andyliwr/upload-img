@@ -195,6 +195,26 @@ a {
     margin-top: 20px;
 }
 
+.alert {
+    position: fixed;
+    width: 250px;
+    right: -250px;
+    transition: right .5s, opacity .5s;
+    opacity: 0;
+    top: 80px;
+    z-index: 1000;
+}
+
+.alert.show {
+    right: 5px;
+    opacity: 1;
+}
+
+.alert #tip-type {
+    margin-right: 10px;
+    font-weight: bold;
+}
+
 #carousel-generic {
     margin: 20px auto;
     max-width: 800px;

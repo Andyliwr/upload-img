@@ -102,7 +102,7 @@ $(document).ready(function() {
                 method: 'POST',
                 url: '/api/signup',
                 data: {
-                    userame: $('#inputName').val(),
+                    username: $('#inputName').val(),
                     email: $('#inputEmail').val(),
                     password: $('#inputPassword').val(),
                     repassword: $('#inputRePassword').val()
@@ -111,7 +111,10 @@ $(document).ready(function() {
                 timeout: 10000,
                 success: function(res) {
                     if (res.ok) {
-                        window.location.href = '/index.html'
+                        showAlert('success', '注册成功！即将前往首页')
+                        setTimeout(function() {
+                            window.location.href = '/'
+                        }, 2000)
                     } else {
                         $('.err-tipsr').html(res.msg)
                     }
