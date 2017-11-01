@@ -1,14 +1,16 @@
-$(document).ready(function() {
+$(document).ready(function () {
     if ($('#logined').html() === 'true') {
         $.ajax({
             method: 'GET',
             url: '/api/user',
             dataType: 'json',
             timeout: 10000,
-            success: function(res) {
-                console.log(res)
+            success: function (res) {
+                if (res.ok) {
+                    $('#username-a > img').attr('src', 'user')
+                }
             },
-            error: function(err) {
+            error: function (err) {
                 console.log(err)
             }
         })

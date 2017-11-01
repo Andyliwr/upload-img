@@ -10,7 +10,7 @@ const userSchema = new mongoose.Schema({
     settings: Object
 })
 
-userSchema.statics.add = async function(ctx, user) {
+userSchema.statics.add = async function (ctx, user) {
     let document = await this.findOne({ email: user.email })
     if (document) {
         return { ok: false, msg: '此邮箱已注册' }
@@ -19,13 +19,17 @@ userSchema.statics.add = async function(ctx, user) {
     let u = await user.save()
     user.password = null
     ctx.session.user = user
-    console.log(ctx.session)
 
     return { ok: true, msg: '注册成功', user }
 }
 
-userSchema.statics.login = async function(ctx, email, password) {
-    let user = await this.findOne({ email })
+userSchema.statics.login = async function (ctx, nameOrEmail, password) {
+    let user = await this.findOne({
+        $or: [
+            { username: nameOrEmail },
+            { email: nameOrEmail }
+        ]
+    })
 
     if (user) {
         if (md5(password) === user.password) {
@@ -36,10 +40,10 @@ userSchema.statics.login = async function(ctx, email, password) {
         return { ok: false, msg: '密码错误', user }
     }
 
-    return { ok: false, msg: '邮箱未注册', user }
+    return { ok: false, msg: '用户名或者邮箱错误', user }
 }
 
-userSchema.statics.checkname = async function(ctx, name) {
+userSchema.statics.checkname = async function (ctx, name) {
     let document = await this.findOne({ username: name })
     if (document) {
         return { ok: false, msg: '用户名已经存在' }
@@ -48,7 +52,7 @@ userSchema.statics.checkname = async function(ctx, name) {
     }
 }
 
-userSchema.statics.checkemail = async function(ctx, email) {
+userSchema.statics.checkemail = async function (ctx, email) {
     let document = await this.findOne({ username: email })
     if (document) {
         return { ok: false, msg: '邮箱已经存在' }

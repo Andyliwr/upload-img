@@ -7,12 +7,11 @@ html
   link(rel='stylesheet', href='/styles/iconfont.css')
 body
   div.content
-    p#logined(style="display:none")= logined
     div.alert.alert-dismissible.alert-danger
       button.close &times;
       p
         span#tip-type 错误！
-        span#tip-words assdkahsdkjashd
+        span#tip-words= asdasd
     nav.navbar.navbar-default
       div.container
         div.navbar-header
@@ -34,7 +33,7 @@ body
             li
               a(href="/about") 关于我们
           ul.nav.navbar-nav.navbar-right
-            if (!logined)
+            if (!user)
               li
                 span.padding
                  a(href='/login') 登录
@@ -42,7 +41,8 @@ body
                  a(href='/registe') 注册
             else
               li.dropdown
-                a.dropdown-toggle(href="#", data-toggle="dropdown", role="button", aria-haspopup="true", aria-expanded="false") Andyliwr 
+                a#username-a.dropdown-toggle(href="#", data-toggle="dropdown", role="button", aria-haspopup="true", aria-expanded="false")
+                  img.img-rounded(src=user.avatar, alt=user.username)
                   span.caret
                 ul.dropdown-menu
                   li

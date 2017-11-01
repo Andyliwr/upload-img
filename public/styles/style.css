@@ -87,6 +87,10 @@ a {
     cursor: pointer;
 }
 
+#username-a >img{
+    width: 24px;
+}
+
 #index-container {
     position: relative;
 }
@@ -132,7 +136,7 @@ a {
 }
 
 #index-container .introduce {
-    padding: 20px 8% 0 8%;
+    padding: 20px 0 0 0;
 }
 
 #index-container .feature-item {
@@ -147,7 +151,6 @@ a {
     transform: translateY(-50%);
     display: inline-block;
     width: 60px;
-    position:
 }
 
 #index-container .feature-item>div {
@@ -255,7 +258,7 @@ a {
     padding: 30px;
 }
 
-#registe-container .well {
+#registe-container .well, #login-container .well {
     margin-bottom: 30px;
 }
 

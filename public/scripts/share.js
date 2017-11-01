@@ -11,6 +11,12 @@ function getCookie(c_name) {
     return ""
 }
 
+function setCookie(c_name, value, expiredays) {
+    var exdate = new Date()
+    exdate.setDate(exdate.getDate() + expiredays)
+    document.cookie = c_name + "=" + escape(value) + ((expiredays == null) ? "" : ";expires=" + exdate.toGMTString())
+}
+
 function showAlert(type, content) {
     if (type === 'error') {
         $('.alert #tip-type').html('错误!')
@@ -25,10 +31,10 @@ function showAlert(type, content) {
         $('.alert #tip-words').html(content)
         $('.alert').removeClass('alert-success').removeClass('alert-danger').addClass('alert-waining').addClass('show')
     }
-    $('.alert .close').bind('click', function() {
+    $('.alert .close').bind('click', function () {
         $('.alert').removeClass('show')
     })
-    setTimeout(function() {
+    setTimeout(function () {
         $('.alert').removeClass('show')
     }, 3000)
 }

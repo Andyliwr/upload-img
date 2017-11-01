@@ -35,6 +35,12 @@ app.use(async (ctx, next) => {
     console.log(`${ctx.method} ${ctx.url} - ${ms}ms`)
 })
 
+// user info
+app.use(async (ctx, next) => {
+    ctx.state.user = ctx.session.user
+    await next()
+})
+
 // routes
 app.use(index.routes(), index.allowedMethods())
 
