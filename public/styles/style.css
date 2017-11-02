@@ -40,7 +40,7 @@ a {
     color: #e51c23
 }
 
-.text-underline{
+.text-underline {
     text-decoration: underline;
 }
 
@@ -81,7 +81,7 @@ a {
     cursor: pointer;
 }
 
-#username-a >img{
+#username-a>img {
     width: 24px;
 }
 
@@ -129,26 +129,55 @@ a {
     font-size: 12px;
 }
 
-#upload-state{
+#upload-state {
     margin-top: 20px;
 }
-#upload-state table{
-    margin: 0 10%;
-    width: 80%;
+
+#upload-state table {
+    margin: 0 14%;
+    width: 72%;
+    table-layout: fixed;
 }
 
-#upload-state table .index{
-    width: 10%;
+#upload-state table td {
+    vertical-align: middle !important;
 }
 
-#upload-state table .filename{
+#upload-state table .index {
+    width: 6%;
+}
+
+#upload-state .progress {
+    margin-bottom: 0;
+    height: 16px;
+    border-radius: 8px;
+}
+
+#upload-state .progress .progress-bar {
+    border-radius: 0px;
+}
+
+#upload-state table .filename {
     width: 20%;
     white-space: nowrap;
     text-overflow: ellipsis;
+    overflow: hidden;
 }
 
-#upload-state table .operation{
+#upload-state table .filesize {
+    width: 15%;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+
+#upload-state table .operation {
     width: 20%;
+    text-align: center;
+}
+
+#upload-state table .progress-bar {
+    line-height: 16px;
 }
 
 #index-container .introduce {
@@ -274,7 +303,8 @@ a {
     padding: 30px;
 }
 
-#registe-container .well, #login-container .well {
+#registe-container .well,
+#login-container .well {
     margin-bottom: 30px;
 }
 
@@ -365,5 +395,12 @@ a {
         text-align: center;
         width: 100%;
         margin: 20px 0;
+    }
+    #upload-state table {
+        margin: 0;
+        width: 100%;
+    }
+    #index-container .section .des {
+        padding: 0 4%;
     }
 }
