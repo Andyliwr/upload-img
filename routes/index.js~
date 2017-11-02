@@ -50,9 +50,6 @@ router.get('/about', async (ctx, next) => {
     })
 })
 
-router.get('/file',file.index);
-router.get('/file/index',file.index);
-router.all('/file/uploader',file.uploader)
 
 
 module.exports = router

@@ -52,3 +52,9 @@ jade因为不支持同时在一个文件中使用`tab`和空格缩进，所以�
 (username, password, avatar, email, history, settings)
 https://www.npmjs.com/package/koa-session2
 redis 可视化工具 https://github.com/luin/medis
+图片拖拽上传 https://github.com/wangyan9110/FileUploader/blob/master/views/file.ejs
+
+
+### 部署文档
+1. mongo
+2. redis
