@@ -21,7 +21,6 @@ function getCookie(c_name, cookie) {
 router.get('/', async (ctx, next) => {
     await ctx.render('index', {
         title: '图片上传',
-        // logined: ctx.header.cookie ? (getCookie('ldk_upload_img', ctx.header.cookie) == '' ? false : true) : false
         user: ctx.state.user
     })
 })
@@ -50,9 +49,13 @@ router.get('/about', async (ctx, next) => {
     })
 })
 
-router.get('/file',file.index);
-router.get('/file/index',file.index);
-router.all('/file/uploader',file.uploader)
+router.get('/file', async (ctx, next) => {
+    await ctx.render('upload', {
+        title: 'hahah'
+    })
+})
+router.get('/file/index', file.index);
+router.all('/file/uploader', file.uploader)
 
 
 module.exports = router

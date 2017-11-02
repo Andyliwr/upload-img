@@ -1,11 +1,18 @@
-include ../bower_components/jade-bootstrap/_bootstrap 
 doctype html
-html
+html(lang="zh-cn")
   head
-  title= title
-  link(rel='stylesheet', href='/styles/style.css')
-  link(rel='stylesheet', href='/styles/iconfont.css')
-body
+    meta(charset="UTF-8")
+    meta(http-equiv="X-UA-Compatible", content="IE=edge")
+    meta(name="viewport",content="width=device-width, initial-scale=1")
+    meta(name="description",content="图片上传，小迪版图片上传，图片压缩，上传历史，图片裁剪")
+    meta(name="Andyliwr",content="李迪康，大前端，启明工作室创始人")
+    title= title
+    link(rel="icon",href="../../favicon.ico")
+    link(rel="stylesheet",href="/styles/bootstrap.min.css")
+    link(rel='stylesheet', href='/styles/style.css')
+    link(rel='stylesheet', href='/styles/iconfont.css')
+    block link    
+body(data-spy="scroll",data-target=".scrollspy")
   div.content
     div.alert.alert-dismissible.alert-danger
       button.close &times;
@@ -69,4 +76,7 @@ body
         | Designed and built with all the love in the world by 
         a(href="mailto:andyliwr@outlook.com") @andyliwr.
         p 本项目源码受 MIT开源协议保护。
+  script(type="text/javascript" src="/jquery/dist/jquery.min.js")
+  script(type="text/javascript" src="/bootstrap/dist/js/bootstrap.min.js")
   script(type="text/javascript" src="/scripts/share.js")
+  block script

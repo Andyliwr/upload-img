@@ -1,36 +1,21 @@
 extends layout
-include '/styles/upload.css'
-include 'scripts/uploader/uploader.js'
-include 'scripts/uploader/uploaderQueue.js'
-include 'scripts/uploader/uploaderApp.js'
-include 'scripts/uploader.js'
+
+block link
+  link(type="text/css", rel="stylesheet", src="/styles/upload.css")
 
 block content
+  
   div#container.container
     div.header
       strong#uploadDialogHeadlineStrong.title_status 请将文件拖曳至框内
         div.sprite_new
     div#uploadItems
-    //- <div class="upload_item">
-    //-     <div class="inline_mask" style=""></div>
-    //-     <div class="file_name">ubuntu-12.04.3-desktop-i386.iso</div>
-    //-     <div class="file_size">707M</div>
-    //-     <div class="file_upload_status">72%(564.70 KB/s)</div>
-    //-     <a class="cancle_upload" href="javascript:;" title="取消"></a>
-    //- </div>
-    //- <div class="upload_item">
-    //-     <div class="inline_mask" style=""></div>
-    //-     <div class="file_name">ubuntu-12.04.3-desktop-i386.iso</div>
-    //-     <div class="file_size">707M</div>
-    //-     <div class="file_upload_status">72%(564.70 KB/s)</div>
-    //-     <a class="cancle_upload" href="javascript:;" title="取消"></a>
-    //- </div>
-    //- <div class="upload_item">
-    //-     <div class="inline_mask" style=""></div>
-    //-     <div class="file_name">ubuntu-12.04.3-desktop-i386.iso</div>
-    //-     <div class="file_size">707M</div>
-    //-     <div class="file_upload_status">72%(564.70 KB/s)</div>
-    //-     <a class="cancle_upload" href="javascript:;" title="取消"></a>
-	script
-	    var main = new uploaderApp.main('container')
-	    main.init()
+
+block script
+  script(type="text/javascript", src="/scripts/uploader/uploader.js")
+  script(type="text/javascript", src="/scripts/uploader/uploaderQueue.js")
+  script(type="text/javascript", src="/scripts/uploader/uploaderApp.js")
+  script(type="text/javascript", src="/scripts/uploader.js")
+  script(type="text/javascript").
+    var main = new uploaderApp.main('container')
+    main.init()

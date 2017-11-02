@@ -34,16 +34,16 @@ function uploadFile(req, res, path, index) {
             var unlink = promise.denodeify(fs.unlink);
             unlink(tempPath);
         }).then(function () {
-                if (index == req.files.file.length - 1) {
-                    var resObj = {
-                        code: 1,
-                        des: '上传成功'
-                    };
-                    res.send(resObj);
-                } else {
-                    uploadFile(req, res, path, index + 1);
-                }
-            });
+            if (index == req.files.file.length - 1) {
+                var resObj = {
+                    code: 1,
+                    des: '上传成功'
+                };
+                res.send(resObj);
+            } else {
+                uploadFile(req, res, path, index + 1);
+            }
+        });
     }
 }
 
