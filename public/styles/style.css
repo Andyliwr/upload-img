@@ -40,14 +40,8 @@ a {
     color: #e51c23
 }
 
-.btn {
-    text-transform: uppercase;
-    border: none;
-    -webkit-box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.4);
-    box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.4);
-    -webkit-transition: all 0.4s;
-    -o-transition: all 0.4s;
-    transition: all 0.4s;
+.text-underline{
+    text-decoration: underline;
 }
 
 #logo {
@@ -133,6 +127,28 @@ a {
 
 #upload-area p.small-text {
     font-size: 12px;
+}
+
+#upload-state{
+    margin-top: 20px;
+}
+#upload-state table{
+    margin: 0 10%;
+    width: 80%;
+}
+
+#upload-state table .index{
+    width: 10%;
+}
+
+#upload-state table .filename{
+    width: 20%;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+#upload-state table .operation{
+    width: 20%;
 }
 
 #index-container .introduce {
