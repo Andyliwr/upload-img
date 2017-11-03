@@ -21,7 +21,6 @@ function uploader(req, res) {
         utils.mkDir().then(function (path) {
             uploadFile(req, res, path, 0);
         });
-
     }
 }
 

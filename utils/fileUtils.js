@@ -11,12 +11,13 @@
  * {        date    name    describe}
  *
  */
-var promise = require('promise');
+const promise = require('promise');
+const path = require('path')
 function mkDir() {
     var path = getFileDir();
     var ndir = require('ndir');
     var mkdir = promise.denodeify(ndir.mkdir);
-    return  mkdir(path).then(function (err) {
+    return mkdir(path).then(function (err) {
         if (err) {
             throw err;
         }
@@ -26,9 +27,10 @@ function mkDir() {
 }
 
 function getFileDir() {
-    var basePath = require('../config').G.FILEPATH;
-    var day = new Date();
-    var dayStr = day.getFullYear() + '-' + day.getMonth() + '-' + day.getDate();
-    return basePath + dayStr + '/' + day.getTime() + '/';
+    var basePath = __dirname + '/../logs/file/'
+    var day = new Date()
+    var dayStr = day.getFullYear() + '-' + day.getMonth() + '-' + day.getDate()
+    return path.join(basePath + dayStr + '/' + day.getTime() + '/')
 }
+
 exports.mkDir = mkDir;

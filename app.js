@@ -1,12 +1,14 @@
 const Koa = require('koa')
 const app = new Koa()
+const path = require('path')
 const views = require('koa-views')
 const json = require('koa-json')
 const onerror = require('koa-onerror')
 const bodyparser = require('koa-bodyparser')
+const body = require('koa-better-body')
 const logger = require('koa-logger')
 const session = require('koa-session2')
-const Store = require("./utils/store");
+const Store = require("./utils/store")
 
 const index = require('./routes/index')
 
@@ -15,6 +17,11 @@ onerror(app)
 
 // middlewares
 app.use(bodyparser())
+// uploads
+app.use(body({
+    uploadDir: path.join(__dirname, 'uploads'),
+    keepExtensions: true
+}))
 app.use(json())
 app.use(logger())
 app.use(require('koa-static')(__dirname + '/public'))
