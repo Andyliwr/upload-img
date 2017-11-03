@@ -11,6 +11,7 @@
   "dependencies": {
     "crypto": "^1.0.1",
     "debug": "^2.6.3",
+    "eventproxy": "^1.0.0",
     "ioredis": "^3.2.1",
     "koa": "^2.2.0",
     "koa-better-body": "^3.0.4",
@@ -26,7 +27,10 @@
     "mongoose": "^4.12.4",
     "ndir": "^0.1.5",
     "pug": "^2.0.0-rc.1",
-    "runkoa": "^1.5.9"
+    "qiniu": "^7.1.1",
+    "runkoa": "^1.5.9",
+    "tinify": "^1.5.0",
+    "uuid": "^3.1.0"
   },
   "devDependencies": {
     "nodemon": "^1.8.1"

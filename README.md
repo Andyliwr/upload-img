@@ -53,6 +53,8 @@ jade因为不支持同时在一个文件中使用`tab`和空格缩进，所以�
 https://www.npmjs.com/package/koa-session2
 redis 可视化工具 https://github.com/luin/medis
 图片拖拽上传 https://github.com/wangyan9110/FileUploader/blob/master/views/file.ejs
+callback到promise https://github.com/node-modules/qn/issues/82
+另一个qiniu api https://github.com/node-modules/qn
 
 
 ### 部署文档
