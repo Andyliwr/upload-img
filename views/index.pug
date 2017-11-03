@@ -1,32 +1,13 @@
 
 extends layout
-
+block link
+  link(rel='stylesheet', href='/styles/jquery.filer.css')
+  link(rel='stylesheet', href='/fonts/jquery-filer.css')
+  link(rel='stylesheet', href='/styles/jquery.filer-dragdropbox-theme.css')
 block content
   div#index-container
     div.bg
-    div#upload-area
-      i.iconfont.icon-upload
-      p.big-text 拖放图片或者点击上传
-      p.small-text 最多20张图片，总大小不超过5M
-    div#upload-state.container
-      table.table.table-hover.text-bold
-        thead
-          tr
-            th.index #
-            th.filename 文件名
-            th.filesize 文件大小
-            th 上传进度
-            th.operation 操作
-        tboyd
-          tr
-            td.index 1
-            td.filename avataasdasdasdasaasdasdasdassdasdsar.png
-            td.filename 18KB
-            td
-              div.progress.progress-striped.active
-                div.progress-bar(style="width:45%")
-            td.operation
-              a.btn.btn-link.text-underline 取消
+      input#input2(type="file", multiple="multiple",name="files[]")
     div.introduce.container
       div.section.clearfix
         h4.text-center.text-bold 小迪图片上传工具
@@ -87,10 +68,7 @@ block content
             span.sr-only 后一个
 
 block script
-  script(type="text/javascript", src="/scripts/uploader/uploader.js")
-  script(type="text/javascript", src="/scripts/uploader/uploaderQueue.js")
-  script(type="text/javascript", src="/scripts/uploader/uploaderApp.js")
-  script(type="text/javascript", src="/scripts/uploader.js")
+  script(type="text/javascript" src="/scripts/jquery.filer.js")
   script(type="text/javascript" src="/scripts/index.js")
 
 

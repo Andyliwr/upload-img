@@ -90,94 +90,11 @@ a {
 }
 
 #index-container .bg {
-    height: 250px;
     background: url(http://oyh0gj8ht.bkt.clouddn.com//index/bg/bg01.jpg) no-repeat;
     background-size: cover;
     background-position: center;
     z-index: -1;
-}
-
-#upload-area {
-    position: absolute;
-    top: 45px;
-    left: 50%;
-    margin-left: -200px;
-    height: 160px;
-    width: 400px;
-    color: #fff;
-    border: 2px dashed #fff;
-    border-radius: 6px;
-    text-align: center;
-    line-height: .6em;
-    padding-top: 45px;
-    cursor: pointer;
-}
-
-#upload-area:hover .icon-upload {
-    color: #00B7FF;
-}
-
-#upload-area .icon-upload {
-    font-size: 30px;
-}
-
-#upload-area p.big-text {
-    margin-top: 30px;
-}
-
-#upload-area p.small-text {
-    font-size: 12px;
-}
-
-#upload-state {
-    margin-top: 20px;
-}
-
-#upload-state table {
-    margin: 0 14%;
-    width: 72%;
-    table-layout: fixed;
-}
-
-#upload-state table td {
-    vertical-align: middle !important;
-}
-
-#upload-state table .index {
-    width: 6%;
-}
-
-#upload-state .progress {
-    margin-bottom: 0;
-    height: 16px;
-    border-radius: 8px;
-}
-
-#upload-state .progress .progress-bar {
-    border-radius: 0px;
-}
-
-#upload-state table .filename {
-    width: 20%;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-    overflow: hidden;
-}
-
-#upload-state table .filesize {
-    width: 15%;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-    overflow: hidden;
-}
-
-#upload-state table .operation {
-    width: 20%;
-    text-align: center;
-}
-
-#upload-state table .progress-bar {
-    line-height: 16px;
+    padding: 50px;
 }
 
 #index-container .introduce {
@@ -368,7 +285,7 @@ a {
     vertical-align: middle;
 }
 
-.form .btn > i{
+.form .btn>i {
     font-size: 18px;
     margin-right: 10px;
     vertical-align: middle;
@@ -377,13 +294,46 @@ a {
     display: none;
 }
 
-.form .btn.loading > i{
+.form .btn.loading>i {
     display: inline-block;
 }
 
-@keyframes rotation{
-    from {transform: rotate(0deg);}
-    to {transform: rotate(360deg);}
+.file_input {
+    display: inline-block;
+    padding: 10px 16px;
+    outline: none;
+    cursor: pointer;
+    text-decoration: none;
+    text-align: center;
+    white-space: nowrap;
+    font-family: sans-serif;
+    font-size: 11px;
+    font-weight: bold;
+    border-radius: 3px;
+    color: #008BFF;
+    border: 1px solid #008BFF;
+    vertical-align: middle;
+    background-color: #fff;
+    margin-bottom: 10px;
+    box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.05);
+    -webkit-transition: all 0.2s;
+    -moz-transition: all 0.2s;
+    transition: all 0.2s;
+}
+
+.file_input:hover,
+.file_input:active {
+    background: #008BFF;
+    color: #fff;
+}
+
+@keyframes rotation {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
 }
 
 @media (min-width: 768px) {
