@@ -365,8 +365,26 @@ a {
 
 .form .btn {
     width: 100%;
+    vertical-align: middle;
 }
 
+.form .btn > i{
+    font-size: 18px;
+    margin-right: 10px;
+    vertical-align: middle;
+    margin-top: -4px;
+    animation: rotation 2s linear infinite;
+    display: none;
+}
+
+.form .btn.loading > i{
+    display: inline-block;
+}
+
+@keyframes rotation{
+    from {transform: rotate(0deg);}
+    to {transform: rotate(360deg);}
+}
 
 @media (min-width: 768px) {
     .footer {

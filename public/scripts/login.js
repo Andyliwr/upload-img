@@ -1,11 +1,12 @@
-$(document).ready(function() {
+$(document).ready(function () {
     // 点击注册
-    $('#doLogin').bind('click', function() {
+    $('#doLogin').bind('click', function () {
         var nameOrEmail = $('#inputEmail').val()
         var password = $('#inputPassword').val()
         if (nameOrEmail) {
             if (password) {
-                $('.err-tips').html('')
+                $('.err-tips').html('&nbsp;')
+                $('#doLogin').addClass('loading').attr('disabled', true)
                 $.ajax({
                     method: 'POST',
                     url: '/api/signin',
@@ -15,18 +16,20 @@ $(document).ready(function() {
                     },
                     dataType: 'json',
                     timeout: 10000,
-                    success: function(res) {
+                    success: function (res) {
+                        $('#doLogin').removeClass('loading').removeAttr('disabled')
                         if (res.ok) {
                             showAlert('success', '登陆成功！即将前往首页')
-                            setTimeout(function() {
+                            setTimeout(function () {
                                 window.location.href = '/'
                             }, 1500)
                         } else {
                             $('.err-tips').html(res.msg)
                         }
                     },
-                    error: function(err) {
+                    error: function (err) {
                         $('.err-tips').html('登陆失败')
+                        $('#doLogin').removeClass('loading').removeAttr('disabled')
                     }
                 })
             } else {

@@ -98,6 +98,8 @@ $(document).ready(function () {
             }
         })
         if (isok) {
+            $('.err-tips').html('&nbsp;')
+            $('#doRegiste').addClass('loading').attr('disabled', true)
             $.ajax({
                 method: 'POST',
                 url: '/api/signup',
@@ -110,6 +112,7 @@ $(document).ready(function () {
                 dataType: 'json',
                 timeout: 10000,
                 success: function (res) {
+                    $('#doRegiste').removeClass('loading').removeAttr('disabled')
                     if (res.ok) {
                         showAlert('success', '注册成功！即将前往首页')
                         setTimeout(function () {
@@ -120,6 +123,7 @@ $(document).ready(function () {
                     }
                 },
                 error: function (err) {
+                    $('#doRegiste').removeClass('loading').removeAttr('disabled')
                     $('.err-tips').html('注册失败')
                 }
             })
