@@ -1,64 +1,19 @@
-const convert = require('koa-convert')
-const body = require('koa-better-body')
-const path = require('path')
-const qn = require('qn')
-const tinify = require("tinify") // image compress
-const eventproxy = require('eventproxy')
-const uuid = require('uuid')
+import { History } from '../models'
+import convert from 'koa-convert'
+import body from 'koa-better-body'
+import path from 'path'
+import qn from 'qn'
+
+const minify = require('../utils/minify')
 const config = require('../config')
 
-// tinypng上传设置
-tinify.key = "Q0Q_7x6ppzaVY00KSOu1vc5-FVKyN20J"
-
 // qiniu上传设置
-var client = qn.create({
+const client = qn.create({
     accessKey: config.accessKey,
     secretKey: config.secretKey,
     bucket: 'upload',
     origin: 'http://oyh0gj8ht.bkt.clouddn.com',
 });
-
-// image compress
-function imageComparess(url, saveName, callback) {
-    var urlReg = new RegExp('[a-zA-z]+://[^\s]*', '')
-    if (urlReg.test(url)) {
-        if (typeof callback === "function") {
-            tinify.fromUrl(url).toFile(saveName, callback)
-        } else {
-            tinify.fromUrl(url).toFile(saveName)
-        }
-    } else {
-        console.log('It is not a url')
-        if (typeof callback === "function") {
-            console.log(url + ' ' + saveName)
-            tinify.fromFile(url).toFile(saveName, callback)
-        } else {
-            tinify.fromFile(url).toFile(saveName)
-        }
-    }
-}
-
-// comparess and upload
-function compressAndUpload(url, type, tmpPath, saveName, success, fail) {
-    var ep = new eventproxy()
-    ep.all('hasFinishedCompress', function(data) {
-        // start to upload
-        console.log('完成压缩' + data)
-        if (typeof success !== 'function' && typeof fail !== 'function') {
-            var success = function(ret) {
-                console.log(url + '  ===>  ' + 'https://olpkwt43d.qnssl.com/' + ret.key)
-            };
-            var fail = function(err) {
-                console.log(url + '压缩失败....')
-                console.log(err)
-            };
-        }
-        uploadFileToQiNiu(tmpPath + data, 'myapp/' + (type ? (type + '/') : '') + 'c_' + data, success, fail)
-    });
-    imageComparess(url, tmpPath + saveName, function() {
-        ep.emit('hasFinishedCompress', saveName)
-    })
-}
 
 export default function(router) {
     router.post('/api/uploader', convert(body({
@@ -76,12 +31,135 @@ export default function(router) {
             })
             if (isYaSuo) {
                 for (let i = 0; i < ctx.request.files.length; i++) {
-                    let compressUrl = await compress(ctx.request.files[i].path)
-                    await upload(compressUrl)
+                    let uploadType = ''
+                    let fileName = ctx.request.files[i].name
+                    switch (ctx.request.files[i].type) {
+                        case 'image/png':
+                            uploadType = '.png'
+                            break
+                        case 'image/jpg':
+                            uploadType = '.jpg'
+                            break
+                        case 'image/jpeg':
+                            uploadType = '.jpg'
+                            break
+                        case 'image/gif':
+                            uploadType = '.gif'
+                            break
+                        case 'image/bmp':
+                            uploadType = '.bmp'
+                            break
+                        default:
+                            break
+                    }
+                    let compressObj = await minify(ctx.request.files[i].path)
+                    let compressUrl = ''
+                    if (compressObj instanceof Array && compressObj.length == 1) {
+                        compressUrl = compressObj[0].path
+                    } else {
+                        compressUrl = ctx.request.files[i].path
+                    }
+                    if (uploadType) {
+                        return new Promise((resolve, reject) => {
+                            client.uploadFile(compressUrl, { key: (new Date()).getTime() + uploadType }, function(err, result) {
+                                if (err) {
+                                    ctx.throw(500, '图片上传失败')
+                                    return reject(err)
+                                } else {
+                                    console.log('七牛上传成功！')
+                                    // save history
+                                    (async function() {
+                                        let history = new History({
+                                            filename: result.key,
+                                            old_filesize: fileName,
+                                            filesize: result['x:mtime'],
+                                            userid: await History.transId(ctx.state.user._id), // 所属人
+                                            tmp_url: compressUrl, // 腾讯云临时地址
+                                            remote_url: result.url, // 七牛永久地址
+                                            time: new Date()
+                                        })
+                                        let isOk = await History.add(history)
+                                        if (isOk == 1) {
+                                            ctx.body = {
+                                                ok: true,
+                                                msg: '图片上传成功',
+                                                data: result
+                                            }
+                                            resolve()
+                                        } else if (isOk == 0) {
+                                            ctx.throw(500, '更新History之后更新User.history失败')
+                                        } else if (isOk == -1) {
+                                            ctx.throw(500, '更新History失败')
+                                        }
+                                    })()
+                                }
+                            })
+                        })
+                    } else {
+                        ctx.throw(500, '图片格式不支持')
+                    }
                 }
             } else {
                 for (let i = 0; i < ctx.request.files.length; i++) {
-                    await upload(ctx.request.files[i].path)
+                    let uploadType = ''
+                    let fileName = ctx.request.files[i].name
+                    switch (ctx.request.files[i].type) {
+                        case 'image/png':
+                            uploadType = '.png'
+                            break
+                        case 'image/jpg':
+                            uploadType = '.jpg'
+                            break
+                        case 'image/jpeg':
+                            uploadType = '.jpg'
+                            break
+                        case 'image/gif':
+                            uploadType = '.gif'
+                            break
+                        case 'image/bmp':
+                            uploadType = '.bmp'
+                            break
+                        default:
+                            break
+                    }
+                    if (uploadType) {
+                        return new Promise((resolve, reject) => {
+                            client.uploadFile(ctx.request.files[i].path, { key: (new Date()).getTime() + uploadType }, function(err, result) {
+                                if (err) {
+                                    ctx.throw(500, '图片上传失败')
+                                    return reject(err)
+                                } else {
+                                    // save history
+                                    (async function() {
+                                        let history = new History({
+                                            filename: result.key,
+                                            old_filesize: fileName,
+                                            filesize: result['x:mtime'],
+                                            userid: await History.transId(ctx.state.user._id), // 所属人
+                                            tmp_url: ctx.request.files[i].path, // 腾讯云临时地址
+                                            remote_url: result.url, // 七牛永久地址
+                                            time: new Date()
+                                        })
+                                        let isOk = await History.add(history)
+                                        if (isOk == 1) {
+                                            ctx.body = {
+                                                ok: true,
+                                                msg: '图片上传成功',
+                                                data: result
+                                            }
+                                            resolve()
+                                        } else if (isOk == 0) {
+                                            ctx.throw(500, '更新History之后更新User.history失败')
+                                        } else if (isOk == -1) {
+                                            ctx.throw(500, '更新History失败')
+                                        }
+                                    })()
+                                }
+                            })
+                        })
+                    } else {
+                        ctx.throw(500, '图片格式不支持')
+                    }
                 }
             }
         } else {
@@ -109,7 +187,6 @@ export default function(router) {
                 if (uploadType) {
                     return new Promise((resolve, reject) => {
                         client.uploadFile(ctx.request.files[i].path, { key: (new Date()).getTime() + uploadType }, function(err, result) {
-                            console.log(err, result)
                             if (err) {
                                 ctx.throw(500, '图片上传失败')
                                 return reject(err)
