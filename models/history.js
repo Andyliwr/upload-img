@@ -14,7 +14,6 @@ const historySchema = new mongoose.Schema({
 historySchema.statics.add = async function(history, needUpdateUser) {
     let a = await history.save()
     if (a) {
-        console.log(needUpdateUser, 'needUpdateUser')
         if (needUpdateUser) {
             let b = await User.update({ _id: history.userid }, { '$addToSet': { history: history.id } })
             console.log('插入history后，更新User: ', b)

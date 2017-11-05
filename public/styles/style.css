@@ -881,6 +881,57 @@ span.jFiler-icon-file.f-audio:after {
     font-weight: 600;
 }
 
+#myModal .table {
+    table-layout: fixed;
+    font-size: 15px;
+}
+
+#myModal .table .name {
+    width: 120px;
+}
+
+#myModal .table .link {
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+
+#myModal .table .link a {
+    cursor: pointer;
+}
+
+#myModal .table td {
+    vertical-align: middle;
+}
+
+#myModal .table .op {
+    width: 120px;
+    text-align: center;
+}
+
+#myModal .table .op .btn>i {
+    margin-right: 6px;
+}
+
+#user-container {
+    margin: 20px auto 50px auto;
+}
+
+#user-container .left {
+    padding-left: 20px;
+}
+
+#user-container .left .img-rounded {
+    margin: 10px 0;
+    width: 60%;
+    max-width: 120px;
+    display: block;
+}
+
+#user-container .left .name {
+    font-size: 18px;
+}
+
 @media (min-width: 768px) {
     .footer {
         text-align: left;

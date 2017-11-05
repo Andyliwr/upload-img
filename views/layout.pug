@@ -52,9 +52,9 @@ body(data-spy="scroll",data-target=".scrollspy")
                   span.caret
                 ul.dropdown-menu
                   li
-                    a(href="#") 个人中心
+                    a(href="/user") 个人中心
                   li
-                    a(href="#") 上传历史
+                    a(href="/user#history") 上传历史
                   li.divider(role="separator")
                   li
                     a#logout 退出登录
@@ -75,6 +75,8 @@ body(data-spy="scroll",data-target=".scrollspy")
         | Designed and built with all the love in the world by 
         a(href="mailto:andyliwr@outlook.com") @andyliwr.
         p 本项目源码受MIT开源协议保护。
+  block extra
+
   script(type="text/javascript" src="/jquery/dist/jquery.min.js")
   script(type="text/javascript" src="/bootstrap/dist/js/bootstrap.min.js")
   script(type="text/javascript" src="/scripts/share.js")

@@ -41,4 +41,10 @@ router.get('/about', async(ctx, next) => {
     })
 })
 
+router.get('/user', async(ctx, next) => {
+    await ctx.render('personal', {
+        title: '个人中心'
+    })
+})
+
 module.exports = router

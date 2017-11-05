@@ -1,0 +1,23 @@
+extends layout
+
+block content
+  div#user-container.container
+    div.row
+      div.left.col-xs-12.col-sm-3
+        img.img-rounded(src=user.avatar, alt=user.username)
+        p.name=user.username
+        p.email=user.email
+      div.right.col-xs-12.col-sm-9
+        div.bs-example.bs-example-tabs(data-example-id='togglable-tabs')
+          ul#myTabs.nav.nav-tabs(role='tablist')
+            li.active(role='presentation')
+              a#home-tab(href='#home', role='tab', data-toggle='tab', aria-controls='home', aria-expanded='true') Home
+            li(role='presentation')
+              a#profile-tab(href='#profile', role='tab', data-toggle='tab', aria-controls='profile', aria-expanded='false') Profile
+          div#myTabContent.tab-content
+            div#home.tab-pane.fade.active.in(role='tabpanel', aria-labelledby='home-tab')
+              p
+                | Raw denim you probably haven't heard of them jean shorts Austin. Nesciunt tofu stumptown aliqua, retro synth master cleanse. Mustache cliche tempor, williamsburg carles vegan helvetica. Reprehenderit butcher retro keffiyeh dreamcatcher synth. Cosby sweater eu banh mi, qui irure terry richardson ex squid. Aliquip placeat salvia cillum iphone. Seitan aliquip quis cardigan american apparel, butcher voluptate nisi qui.
+            div#profile.tab-pane.fade(role='tabpanel', aria-labelledby='profile-tab')
+              p
+                | Food truck fixie locavore, accusamus mcsweeney's marfa nulla single-origin coffee squid. Exercitation +1 labore velit, blog sartorial PBR leggings next level wes anderson artisan four loko farm-to-table craft beer twee. Qui photo booth letterpress, commodo enim craft beer mlkshk aliquip jean shorts ullamco ad vinyl cillum PBR. Homo nostrud organic, assumenda labore aesthetic magna delectus mollit. Keytar helvetica VHS salvia yr, vero magna velit sapiente labore stumptown. Vegan fanny pack odio cillum wes anderson 8-bit, sustainable jean shorts beard ut DIY ethical culpa terry richardson biodiesel. Art party scenester stumptown, tumblr butcher vero sint qui sapiente accusamus tattooed echo park.

@@ -64,9 +64,55 @@ block content
           a.right.carousel-control(href="#carousel-generic", role="button", data-slide="next")
             span.glyphicon.glyphicon-chevron-right(aria-hidden="true")
             span.sr-only 后一个
+  button#btn(data-clipboard-text="Just because you can doesn't mean you should — clipboard.js")
+    | Copy to clipboard
+
+block extra
+  div#myModal.modal.fade(tabindex='-1', role='dialog')
+    div.modal-dialog(role='document')
+      div.modal-content
+        div.modal-header
+          button.close(type='button', data-dismiss='modal', aria-label='Close')
+            span(aria-hidden='true') ×
+          h4.modal-title 复制代码
+        div.modal-body
+          table.table.table-bordered
+            thead
+              tr
+                th.name 名字
+                th.link 代码
+                th.op 操作
+            tbody
+              tr
+                td.name 图片链接
+                td.link(data-type="url")
+                  |asdhaksjdgas
+                td.op
+                  button#btn_copy_url.btn.btn-primary
+                    i.icon-jfi-files-o
+                    span 复制
+              tr
+                td.name markdown语法
+                td.link(data-type="md")
+                  |asdhaksjdgas
+                td.op
+                  button#btn_copy_md.btn.btn-primary
+                    i.icon-jfi-files-o
+                    span 复制
+              tr
+                td.name html语法
+                td.link(data-type="html")
+                  |asdhaksjdgas
+                td.op
+                  button#btn_copy_html.btn.btn-primary
+                    i.icon-jfi-files-o
+                    span 复制
+        div.modal-footer
+          button.btn.btn-primary(type='button', data-dismiss='modal') 关闭
 
 block script
   script(type="text/javascript" src="/scripts/jquery.filer.js")
+  script(type="text/javascript" src="/clipboard/dist/clipboard.min.js")
   script(type="text/javascript" src="/scripts/index.js")
 
 

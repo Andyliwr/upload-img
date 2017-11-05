@@ -63,3 +63,6 @@ callback到promise https://github.com/node-modules/qn/issues/82
 
 累计上传多少张图片
 累计注册了多少用户
+
+登录页面按enter可登录
+home页的时间轴http://www.jq22.com/yanshi164

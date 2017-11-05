@@ -1,3 +1,11 @@
+function bytesToSize(bytes) {
+    if (bytes === 0) return '0 B';
+    var k = 1000, // or 1024
+        sizes = ['B', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'],
+        i = Math.floor(Math.log(bytes) / Math.log(k));
+    return (bytes / Math.pow(k, i)).toPrecision(3) + ' ' + sizes[i];
+}
+
 $(document).ready(function() {
     $('#input2').filer({
         limit: null,
@@ -12,7 +20,7 @@ $(document).ready(function() {
             item: '<li class="jFiler-item">\
                             <div class="jFiler-item-container">\
                                 <div class="jFiler-item-inner">\
-                                    <div class="jFiler-item-thumb">\
+                                    <div class="jFiler-item-thumb" data-toggle="modal" data-target="#myModal">\
                                         <div class="jFiler-item-status"></div>\
                                         <div class="jFiler-item-info">\
                                             <span class="jFiler-item-title"><b title="{{fi-name}}">{{fi-name | limitTo: 25}}</b></span>\
@@ -24,6 +32,7 @@ $(document).ready(function() {
                                             <li>{{fi-progressBar}}</li>\
                                         </ul>\
                                         <ul class="list-inline pull-right">\
+                                            <li><a class="icon-jfi-paperclip" data-toggle="modal" data-target="#myModal"></a></li>\
                                             <li><a class="icon-jfi-trash jFiler-item-trash-action"></a></li>\
                                         </ul>\
                                     </div>\
@@ -33,7 +42,7 @@ $(document).ready(function() {
             itemAppend: '<li class="jFiler-item">\
                             <div class="jFiler-item-container">\
                                 <div class="jFiler-item-inner">\
-                                    <div class="jFiler-item-thumb">\
+                                    <div class="jFiler-item-thumb" data-toggle="modal" data-target="#myModal">\
                                         <div class="jFiler-item-status"></div>\
                                         <div class="jFiler-item-info">\
                                             <span class="jFiler-item-title"><b title="{{fi-name}}">{{fi-name | limitTo: 25}}</b></span>\
@@ -45,6 +54,7 @@ $(document).ready(function() {
                                             <span class="jFiler-item-others">{{fi-icon}} {{fi-size2}}</span>\
                                         </ul>\
                                         <ul class="list-inline pull-right">\
+                                            <li><a class="icon-jfi-paperclip" data-toggle="modal" data-target="#myModal"></a></li>\
                                             <li><a class="icon-jfi-trash jFiler-item-trash-action"></a></li>\
                                         </ul>\
                                     </div>\
@@ -68,24 +78,63 @@ $(document).ready(function() {
             enctype: 'multipart/form-data',
             beforeSend: function() {},
             success: function(data, el) {
+                // 添加data-info属性
+                if (data.data) {
+                    el.attr('data-info', JSON.stringify(data.data))
+                }
                 var parent = el.find(".jFiler-jProgressBar").parent();
                 el.find(".jFiler-jProgressBar").fadeOut("slow", function() {
-                    $("<div class=\"jFiler-item-others text-success\"><i class=\"icon-jfi-check-circle\"></i> Success</div>").hide().appendTo(parent).fadeIn("slow");
-                });
+                    $("<div class=\"jFiler-item-others text-success\"><i class=\"icon-jfi-check-circle\"></i> Success  " + bytesToSize(data.data['x:size']) + "</div>").hide().appendTo(parent).fadeIn("slow");
+                })
+                // 点击弹出复制链接的弹窗
+                $('.jFiler-item-thumb, .icon-jfi-paperclip').off('click').on('click', function(event) {
+                    event.preventDefault()
+                    var obj = $(this).parents('.jFiler-item').data('info')
+                    $('#myModal .table td[data-type="url"]').html(obj.url)
+                    $('#myModal .table td[data-type="md"]').html('![](' + obj.url + ')')
+                    $('#myModal .table td[data-type="html"]').text('<img src="' + obj.url + '" alt="" />')
+                    $('#myModal .table td[data-type="url"]+td .btn').attr('data-clipboard-text', obj.url)
+                    $('#myModal .table td[data-type="md"]+td .btn').attr('data-clipboard-text', '![](' + obj.url + ')')
+                    $('#myModal .table td[data-type="html"]+td .btn').attr('data-clipboard-text', '<img src="' + obj.url + '" alt="" />')
+                    var clipboard_url = new Clipboard('#btn_copy_url');
+                    clipboard_url.on('success', function(e) {
+                        $('#myModal .table .op .btn>i').removeClass('icon-jfi-check').addClass('icon-jfi-files-o')
+                        $('#myModal .table .op .btn>span').html('复制')
+                        $(e.trigger).children('i').removeClass('icon-jfi-files-o').addClass('icon-jfi-check')
+                        $(e.trigger).children('span').html('已复制')
+                        e.clearSelection();
+                    });
+                    var clipboard_md = new Clipboard('#btn_copy_md');
+                    clipboard_md.on('success', function(e) {
+                        $('#myModal .table .op .btn>i').removeClass('icon-jfi-check').addClass('icon-jfi-files-o')
+                        $('#myModal .table .op .btn>span').html('复制')
+                        $(e.trigger).children('i').removeClass('icon-jfi-files-o').addClass('icon-jfi-check')
+                        $(e.trigger).children('span').html('已复制')
+                        e.clearSelection();
+                    });
+                    var clipboard_html = new Clipboard('#btn_copy_html');
+                    clipboard_html.on('success', function(e) {
+                        $('#myModal .table .op .btn>i').removeClass('icon-jfi-check').addClass('icon-jfi-files-o')
+                        $('#myModal .table .op .btn>span').html('复制')
+                        $(e.trigger).children('i').removeClass('icon-jfi-files-o').addClass('icon-jfi-check')
+                        $(e.trigger).children('span').html('已复制')
+                        e.clearSelection();
+                    });
+                })
             },
             error: function(el) {
-                var parent = el.find(".jFiler-jProgressBar").parent();
+                var parent = el.find(".jFiler-jProgressBar").parent()
                 el.find(".jFiler-jProgressBar").fadeOut("slow", function() {
                     $("<div class=\"jFiler-item-others text-error\"><i class=\"icon-jfi-minus-circle\"></i> Error</div>").hide().appendTo(parent).fadeIn("slow");
-                });
+                })
             },
             statusCode: {},
-            onProgress: function() {},
+            onProgress: function() {}
         },
         dragDrop: {
             dragEnter: function() {},
             dragLeave: function() {},
-            drop: function() {},
+            drop: function() {}
         },
         addMore: true,
         clipBoardPaste: true,
@@ -108,5 +157,6 @@ $(document).ready(function() {
                 filesSizeAll: "Files you've choosed are too large! Please upload files up to {{fi-maxSize}} MB."
             }
         }
-    });
-});
+    })
+
+})
