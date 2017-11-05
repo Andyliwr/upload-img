@@ -58,4 +58,23 @@ $(document).ready(function() {
             }
         })
     })
+
+    switch (window.location.pathname) {
+        case '/':
+            $('.main-nav li').removeClass('active')
+            $('.main-nav li[data-link="/"]').addClass('active')
+            break
+        case '/about':
+            $('.main-nav li').removeClass('active')
+            $('.main-nav li[data-link="/about"]').addClass('active')
+            break
+        case '/help':
+            $('.main-nav li').removeClass('active')
+            $('.main-nav li[data-link="/help"]').addClass('active')
+            break
+        default:
+            $('.main-nav li').removeClass('active')
+            $('.main-nav li[data-link="/"]').addClass('active')
+            break
+    }
 })

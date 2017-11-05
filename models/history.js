@@ -11,15 +11,20 @@ const historySchema = new mongoose.Schema({
     time: Date
 })
 
-historySchema.statics.add = async function(history) {
+historySchema.statics.add = async function(history, needUpdateUser) {
     let a = await history.save()
     if (a) {
-        let b = await User.update({ _id: history.userid }, { '$addToSet': { history: history.id } })
-        console.log('插入history后，更新User: ', b)
-        if (b.ok == 1 && b.nModified == 1) {
-            return 1
+        console.log(needUpdateUser, 'needUpdateUser')
+        if (needUpdateUser) {
+            let b = await User.update({ _id: history.userid }, { '$addToSet': { history: history.id } })
+            console.log('插入history后，更新User: ', b)
+            if (b.ok == 1 && b.nModified == 1) {
+                return 1
+            } else {
+                return 0
+            }
         } else {
-            return 0
+            return 1
         }
     } else {
         return -1

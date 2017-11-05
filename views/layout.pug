@@ -30,14 +30,14 @@ body(data-spy="scroll",data-target=".scrollspy")
            img#logo(src="/images/logo.svg")
            span 图片上传
         div#top-navbar-collapse.collapse.navbar-collapse
-          ul.nav.navbar-nav
-            li.active
-              a(href="#") 首页
+          ul.nav.navbar-nav.main-nav
+            li(data-link="/")
+              a(href="/") 首页
                 span.sr-only (current)
-            li
+            li(data-link="/help")
               a(href="/help") 使用帮助
-            li
-              a(href="/about") 关于我们
+            li(data-link="/about")
+              a(href="/about") 关于
           ul.nav.navbar-nav.navbar-right
             if (!user)
               li

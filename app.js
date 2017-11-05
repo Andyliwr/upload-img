@@ -5,10 +5,8 @@ const views = require('koa-views')
 const json = require('koa-json')
 const onerror = require('koa-onerror')
 const bodyparser = require('koa-bodyparser')
-// const body = require('koa-better-body')
 const logger = require('koa-logger')
 const session = require('koa-session2')
-// const convert = require('koa-convert')
 const Store = require("./utils/store")
 
 const index = require('./routes/index')
@@ -16,20 +14,14 @@ const index = require('./routes/index')
 // error handler
 onerror(app)
 
-// middlewares
-// uploads
-// app.use(convert(body({
-//     uploadDir: path.join(__dirname, 'uploads'),
-//     keepExtensions: true
-// })))
 app.use(bodyparser())
-
 app.use(json())
 app.use(logger())
 app.use(require('koa-static')(__dirname + '/public'))
 app.use(require('koa-static')(__dirname + '/bower_components'))
 app.use(session({
     key: "ldk_upload_img",
+    maxAge: 2 * 60 * 60 * 1000,
     store: new Store()
 }));
 app.use(views(__dirname + '/views', {
@@ -37,7 +29,7 @@ app.use(views(__dirname + '/views', {
 }))
 
 // logger
-app.use(async (ctx, next) => {
+app.use(async(ctx, next) => {
     const start = new Date()
     await next()
     const ms = new Date() - start
@@ -45,7 +37,7 @@ app.use(async (ctx, next) => {
 })
 
 // user info
-app.use(async (ctx, next) => {
+app.use(async(ctx, next) => {
     ctx.state.user = ctx.session.user
     await next()
 })

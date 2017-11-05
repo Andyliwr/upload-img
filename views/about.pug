@@ -1,4 +1,78 @@
 extends layout
 
+block link
+  link(rel='stylesheet', href='/styles/about.css')
+
 block content
-  p 关于我们
+  div#about-container.container
+    div.stat-container
+      div.stat.bg1
+        p.title
+          span.glyphicon.glyphicon-signal
+          |累计上传图片
+        p.value
+          span=historyNum
+          span 张
+        .em-spots
+          span.decorate(style='background: rgb(0, 135, 231); width: 51px; height: 51px; margin-top: -25.5px; margin-left: -25.5px; top: 24.9058%; left: 8.33333%;')
+          span.decorate(style='background: rgb(201, 27, 0); width: 52px; height: 52px; margin-top: -26px; margin-left: -26px; top: 36.6673%; left: 25%;')
+          span.decorate(style='width: 38px; height: 38px; margin-top: -19px; margin-left: -19px; top: 9.79643%; left: 41.6667%;')
+          span.decorate(style='background: rgb(201, 27, 0); width: 51px; height: 51px; margin-top: -25.5px; margin-left: -25.5px; top: 85.7013%; left: 58.3333%;')
+          span.decorate(style='width: 56px; height: 56px; margin-top: -28px; margin-left: -28px; top: 88.6278%; left: 75%;')
+          span.decorate(style='background: rgb(57, 38, 115); width: 39px; height: 39px; margin-top: -19.5px; margin-left: -19.5px; top: 35.7016%; left: 91.6667%;')
+
+      div.stat.bg2
+        p.title
+          span.glyphicon.glyphicon-user
+          |累计注册用户
+        p.value 
+          span=userNum
+          span 位
+        .em-spots
+          span.decorate(style='background: rgb(0, 62, 135); width: 36px; height: 36px; margin-top: -18px; margin-left: -18px; top: 49.7906%; left: 8.33333%;')
+          span.decorate(style='background: rgb(57, 38, 115); width: 46px; height: 46px; margin-top: 34px; margin-left: -23px; top: 44.7296%; left: 25%;')
+          span.decorate(style='background: rgb(255, 86, 0); width: 45px; height: 45px; margin-top: -22.5px; margin-left: -22.5px; top: 38.6697%; left: 41.6667%;')
+          span.decorate(style='background: rgb(255, 86, 0); width: 41px; height: 41px; margin-top: -20.5px; margin-left: -20.5px; top: 85.8219%; left: 58.3333%;')
+          span.decorate(style='background: rgb(57, 38, 115); width: 45px; height: 45px; margin-top: -22.5px; margin-left: -22.5px; top: 37.1372%; left: 75%;')
+          span.decorate(style='background: rgb(233, 34, 36); width: 29px; height: 29px; margin-top: -14.5px; margin-left: -14.5px; top: 8.0568%; left: 91.6667%;')
+
+    div.markdown-body
+      h3#kai-fa-bei-jing.markdown-heading.markdown-toc-heading
+        a.header-anchor(href='#kai-fa-bei-jing', aria-hidden='true') #
+          span.text-black 开发背景
+      blockquote
+        p 懒惰是人类文明进步的真正动力 --- 来自初中课本的一句话
+      p 此图片上传工具是自己在使用过tinypng图片压缩，床图上传，七牛图片上传等软件，对不好的地方做了改进，并且综合它们的优点，从而开发的一个图片上传工具。
+      ul
+        li
+          p.title 
+           a(href="https://tinypng.com/", target="_blank") TinyPNG
+          p 虽然我也觉得他们家的压缩功能挺好用的，平常做活动页面的时候都是使用的tinypng压缩的。但是却只提供了对png图片的压缩，不能提供图片上传功能。
+        li
+          p.title
+            a(href="http://www.chuantu.biz/", target="_blank") Chuantu.biz
+          p 前段时间都看到作者开始卖域名，不知道还能用多久，要是哪天服务器关了，那以前上传的那些图片不就gg了。而且感觉网站有些不稳定，在公司的时候时常加载很慢或者完全打不开。
+        li
+          p.title
+            a(href="https://www.qiniu.com/", target="_blank") 七牛图片上传
+          p 这个我很想吐槽下，虽然我也是七牛的老用户了。图片上传界面不好看，上传一张图片需要点击很多下（打开官网--登录--选择空间管理--点击上传图片--选中刚才上传的图片复制图片链接），而且搜索已上传的图片很难搜索，基本上上传完之后就找不到了。
+      p 于是乎，我就写了这样一个工具，将上传、压缩、生成图片链接都放在一次完成，您只需要将图片拖放到指定位置就行。并且如果您已经注册并登录，您的上传历史将会被记录下来，方便图片链接的复用。另外您上传的图片将会被存储到七牛的云空间里，不需要担心图片链接哪一天会失效。
+      h3#kai-fa-ji-shu.markdown-heading.markdown-toc-heading
+        a.header-anchor(href='#kai-fa-ji-shu', aria-hidden='true') #
+          span.text-black 开发技术
+      p 此图片上传工具基于web应用开发框架---
+        a(href="http://koa.bootcss.com/", target="_blank") koa2
+        |，页面是用
+        a(href="http://jade-lang.com/", target="_blank") pug
+        |(原名jade)写的。前端没有使用那些高大上的框架，是使用最简单的bootstrap和jquery写的。
+      p 我将源代码放在了github上，欢迎感兴趣的人下载和点赞。如果有什么疑问，你们可以在github上提
+        a(href="https://github.com/Andyliwr/ldk-upload-img/issues", target="_blank") issue
+        |或者写邮件到我的邮箱(andyliwr@outlook.com)
+      h3#da-ge-guang-gao.markdown-heading.markdown-toc-heading
+        a.header-anchor(href='#da-ge-guang-gao', aria-hidden='true') #
+          span.text-black 打个广告
+      p 欢迎关注我的博客---
+        a(href="http://www.andylistudio.com/", target="_blank") 月光倾城的代码小屋
+
+block script
+  script(type="text/javascript", src="/scripts/about.js")

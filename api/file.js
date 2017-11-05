@@ -78,7 +78,7 @@ export default function(router) {
                                             remote_url: result.url, // 七牛永久地址
                                             time: new Date()
                                         })
-                                        let isOk = await History.add(history)
+                                        let isOk = await History.add(history, true)
                                         if (isOk == 1) {
                                             ctx.body = {
                                                 ok: true,
@@ -140,7 +140,7 @@ export default function(router) {
                                             remote_url: result.url, // 七牛永久地址
                                             time: new Date()
                                         })
-                                        let isOk = await History.add(history)
+                                        let isOk = await History.add(history, true)
                                         if (isOk == 1) {
                                             ctx.body = {
                                                 ok: true,
@@ -165,6 +165,7 @@ export default function(router) {
         } else {
             for (let i = 0; i < ctx.request.files.length; i++) {
                 let uploadType = ''
+                let fileName = ctx.request.files[i].name
                 switch (ctx.request.files[i].type) {
                     case 'image/png':
                         uploadType = '.png'
@@ -191,12 +192,29 @@ export default function(router) {
                                 ctx.throw(500, '图片上传失败')
                                 return reject(err)
                             } else {
-                                ctx.body = {
-                                    ok: true,
-                                    msg: '图片上传成功',
-                                    data: result
-                                }
-                                resolve()
+                                // save history
+                                (async function() {
+                                    let history = new History({
+                                        filename: result.key,
+                                        old_filesize: fileName,
+                                        filesize: result['x:mtime'],
+                                        userid: null, // 所属人
+                                        tmp_url: ctx.request.files[i].path, // 腾讯云临时地址
+                                        remote_url: result.url, // 七牛永久地址
+                                        time: new Date()
+                                    })
+                                    let isOk = await History.add(history, false)
+                                    if (isOk == 1) {
+                                        ctx.body = {
+                                            ok: true,
+                                            msg: '图片上传成功',
+                                            data: result
+                                        }
+                                        resolve()
+                                    } else if (isOk == -1) {
+                                        ctx.throw(500, '更新History失败')
+                                    }
+                                })()
                             }
                         })
                     })

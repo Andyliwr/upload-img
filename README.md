@@ -60,3 +60,6 @@ callback到promise https://github.com/node-modules/qn/issues/82
 ### 部署文档
 1. mongo
 2. redis
+
+累计上传多少张图片
+累计注册了多少用户
