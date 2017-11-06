@@ -137,6 +137,10 @@ aside {
 .timeline article section .brief {
 	color: #9f9f9f;
 }
+.timeline article section .brief>span {
+	width: 300px;
+	display: inline-block;
+}
 
 .timeline section.is-hidden {
 	display: none;
