@@ -28,7 +28,9 @@ block content
                       i.more ...
                     - for (var dayIndex in load[loadIndex].items)
                       section
-                        span.point-time.point-yellow
+                        - var color_arr = ['point-purple', 'point-yellow', 'point-green', 'point-blue']
+                        - var color_class = color_arr[parseInt(Math.random()*4)]
+                        span.point-time(class=color_class)
                         time(datetime='2013-03')
                           span=load[loadIndex].items[dayIndex]._id.substring(5, 7) + '月 ' + load[loadIndex].items[dayIndex]._id.substring(8, 10) + '日'
                         aside
