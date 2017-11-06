@@ -17,6 +17,37 @@ function setCookie(c_name, value, expiredays) {
     document.cookie = c_name + "=" + escape(value) + ((expiredays == null) ? "" : ";expires=" + exdate.toGMTString())
 }
 
+function getParam(name) {
+    var query = window.location.search.substr(1);//获取字符    
+    if (!query) {
+        query = window.location.hash;
+    }
+
+    if (typeof name === 'undefined') {
+        return parse_str(query);
+    }
+
+    query = '&' + query;
+
+    var param = '&' + name + '=';
+    var iLen = param.length;//获取你的参数名称长度
+    var iStart = query.indexOf(param);
+    var source = '';
+    var pos;
+
+    //表示没有参数name的值
+    if (iStart == -1) {
+        return '';
+    }
+
+    source = query.substr(iStart + iLen, query.length);
+    pos = source.indexOf('&');
+    if (pos != -1) {
+        source = source.substr(0, pos);
+    }
+    return decodeURIComponent(source);
+}
+
 function showAlert(type, content) {
     if (type === 'error') {
         $('.alert #tip-type').html('错误!')
@@ -31,29 +62,29 @@ function showAlert(type, content) {
         $('.alert #tip-words').html(content)
         $('.alert').removeClass('alert-success').removeClass('alert-danger').addClass('alert-waining').addClass('show')
     }
-    $('.alert .close').bind('click', function() {
+    $('.alert .close').bind('click', function () {
         $('.alert').removeClass('show')
     })
-    setTimeout(function() {
+    setTimeout(function () {
         $('.alert').removeClass('show')
     }, 3000)
 }
 
-$(document).ready(function() {
-    $('#logout').click(function() {
+$(document).ready(function () {
+    $('#logout').click(function () {
         $.ajax({
             method: 'GET',
             url: '/api/logout',
             dataType: 'json',
             timeout: 10000,
-            success: function(res) {
+            success: function (res) {
                 if (res.ok) {
                     window.location.href = '/'
                 } else {
                     showAlert('error', '退出失败')
                 }
             },
-            error: function(err) {
+            error: function (err) {
                 showAlert('error', '退出失败')
             }
         })

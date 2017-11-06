@@ -7,7 +7,8 @@ const userSchema = new mongoose.Schema({
     email: String,
     password: String,
     history: Array,
-    settings: Object
+    settings: Object,
+    registe_time: Date
 })
 
 userSchema.statics.add = async function (ctx, user) {

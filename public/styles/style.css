@@ -58,6 +58,11 @@ a {
 
 .navbar {
     margin-bottom: 0;
+    height: 64px;
+}
+
+.navbar .main-nav {
+    height: 65px;
 }
 
 .navbar .navbar-brand {
@@ -80,6 +85,15 @@ a {
 
 .navbar-right .padding>a {
     cursor: pointer;
+}
+
+.navbar .dropdown-menu li>a {
+    cursor: pointer;
+}
+
+.navbar .navbar-brand {
+    height: 100%;
+    box-sizing: border-box;
 }
 
 .login-state>a {

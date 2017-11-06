@@ -18,7 +18,8 @@ export default function (router) {
                 email: email,
                 password: password,
                 history: [],
-                settings: []
+                settings: [],
+                registe_time: new Date()
             })
             ctx.body = await User.add(ctx, user)
         }

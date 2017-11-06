@@ -1,8 +1,8 @@
-$(document).ready(function() {
+$(document).ready(function () {
     var userNameReg = /^[\u4e00-\u9fa5_a-zA-Z0-9_]{3,10}$/
     var userPasswordReg = /^[a-zA-Z0-9_]{6,20}$/
     var userEmailReg = /[\w!#$%&'*+/=?^_`{|}~-]+(?:\.[\w!#$%&'*+/=?^_`{|}~-]+)*@(?:[\w](?:[\w-]*[\w])?\.)+[\w](?:[\w-]*[\w])?/
-    $('input.form-control').bind('input', function(event) {
+    $('input.form-control').bind('input', function (event) {
         var _this = $(this)
         var id = _this.attr('id');
         var value = _this.val()
@@ -13,7 +13,7 @@ $(document).ready(function() {
                     url: '/api/checkname?name=' + value,
                     dataType: 'json',
                     timeout: 10000,
-                    success: function(res) {
+                    success: function (res) {
                         if (res.ok) {
                             $('#inputName+i').show()
                             _this.parent().removeClass('has-error')
@@ -24,7 +24,7 @@ $(document).ready(function() {
                             $('.err-tips').html(res.msg)
                         }
                     },
-                    error: function(err) {
+                    error: function (err) {
                         $('#inputName+i').hide()
                         _this.parent().addClass('has-error')
                         // $('.err-tips').html('校验用户名失败')
@@ -44,7 +44,7 @@ $(document).ready(function() {
                     url: '/api/checkemail?name=' + value,
                     dataType: 'json',
                     timeout: 10000,
-                    success: function(res) {
+                    success: function (res) {
                         if (res.ok) {
                             $('#inputEmail+i').show()
                             _this.parent().removeClass('has-error')
@@ -55,7 +55,7 @@ $(document).ready(function() {
                             $('.err-tips').html(res.msg)
                         }
                     },
-                    error: function(err) {
+                    error: function (err) {
                         $('#inputEmail+i').hide()
                         _this.parent().addClass('has-error')
                         // $('.err-tips').html('校验用户名失败')
@@ -90,9 +90,9 @@ $(document).ready(function() {
     })
 
     // 点击注册
-    $('#doRegiste').bind('click', function() {
+    $('#doRegiste').bind('click', function () {
         var isok = true
-        $('.group>i').each(function() {
+        $('.group>i').each(function () {
             if ($(this).css('display') === 'none') {
                 isok = false
             }
@@ -111,22 +111,29 @@ $(document).ready(function() {
                 },
                 dataType: 'json',
                 timeout: 10000,
-                success: function(res) {
+                success: function (res) {
                     $('#doRegiste').removeClass('loading').removeAttr('disabled')
                     if (res.ok) {
                         showAlert('success', '注册成功！即将前往首页')
-                        setTimeout(function() {
+                        setTimeout(function () {
                             window.location.href = '/'
-                        }, 1000)
+                        }, 800)
                     } else {
                         $('.err-tips').html(res.msg)
                     }
                 },
-                error: function(err) {
+                error: function (err) {
                     $('#doRegiste').removeClass('loading').removeAttr('disabled')
                     $('.err-tips').html('注册失败')
                 }
             })
+        }
+    })
+
+    $(document).keypress(function (e) {
+        // 回车键事件  
+        if (e.which == 13) {
+            jQuery("#doRegiste").click()
         }
     })
 })

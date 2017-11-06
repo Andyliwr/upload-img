@@ -1,5 +1,8 @@
 extends layout
 
+block link
+  link(rel='stylesheet', href='/styles/personal.css')
+
 block content
   div#user-container.container
     div.row
@@ -8,16 +11,35 @@ block content
         p.name=user.username
         p.email=user.email
       div.right.col-xs-12.col-sm-9
-        div.bs-example.bs-example-tabs(data-example-id='togglable-tabs')
+        div.personal.personal-tabs(data-example-id='togglable-tabs')
           ul#myTabs.nav.nav-tabs(role='tablist')
             li.active(role='presentation')
-              a#home-tab(href='#home', role='tab', data-toggle='tab', aria-controls='home', aria-expanded='true') Home
+              a#load-tab(href='#load', role='tab', data-toggle='tab', aria-controls='load', aria-expanded='true') 我的历程
             li(role='presentation')
-              a#profile-tab(href='#profile', role='tab', data-toggle='tab', aria-controls='profile', aria-expanded='false') Profile
+              a#history-tab(href='#history', role='tab', data-toggle='tab', aria-controls='history', aria-expanded='false') 上传历史
           div#myTabContent.tab-content
-            div#home.tab-pane.fade.active.in(role='tabpanel', aria-labelledby='home-tab')
-              p
-                | Raw denim you probably haven't heard of them jean shorts Austin. Nesciunt tofu stumptown aliqua, retro synth master cleanse. Mustache cliche tempor, williamsburg carles vegan helvetica. Reprehenderit butcher retro keffiyeh dreamcatcher synth. Cosby sweater eu banh mi, qui irure terry richardson ex squid. Aliquip placeat salvia cillum iphone. Seitan aliquip quis cardigan american apparel, butcher voluptate nisi qui.
-            div#profile.tab-pane.fade(role='tabpanel', aria-labelledby='profile-tab')
+            div#load.tab-pane.fade.active.in(role='tabpanel', aria-labelledby='load-tab')
+              .timeline
+                
+                - for (var loadIndex in load)
+                  article
+                    h3
+                      span=load[loadIndex].year
+                      i.more ...
+                    - for (var dayIndex in load[loadIndex].items)
+                      section
+                        span.point-time.point-yellow
+                        time(datetime='2013-03')
+                          span=load[loadIndex].items[dayIndex]._id.substring(5, 7) + '月 ' + load[loadIndex].items[dayIndex]._id.substring(8, 10) + '日'
+                        aside
+                          p.things=(load[loadIndex].items[dayIndex].is_registe ? '您于今天注册' : '您上传了如下文件')
+                          p.brief
+                            span
+                              - var history_arr = load[loadIndex].items[dayIndex].upload_arr
+                              - for (var itemIndex in history_arr)
+                                a(href=history_arr[itemIndex].link, target="_blank")=history_arr[itemIndex].name
+            div#history.tab-pane.fade(role='tabpanel', aria-labelledby='history-tab')
               p
                 | Food truck fixie locavore, accusamus mcsweeney's marfa nulla single-origin coffee squid. Exercitation +1 labore velit, blog sartorial PBR leggings next level wes anderson artisan four loko farm-to-table craft beer twee. Qui photo booth letterpress, commodo enim craft beer mlkshk aliquip jean shorts ullamco ad vinyl cillum PBR. Homo nostrud organic, assumenda labore aesthetic magna delectus mollit. Keytar helvetica VHS salvia yr, vero magna velit sapiente labore stumptown. Vegan fanny pack odio cillum wes anderson 8-bit, sustainable jean shorts beard ut DIY ethical culpa terry richardson biodiesel. Art party scenester stumptown, tumblr butcher vero sint qui sapiente accusamus tattooed echo park.
+block script
+  script(type="text/javascript" src="/scripts/personal.js")

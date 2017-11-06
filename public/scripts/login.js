@@ -1,6 +1,6 @@
-$(document).ready(function() {
+$(document).ready(function () {
     // 点击注册
-    $('#doLogin').bind('click', function() {
+    $('#doLogin').bind('click', function () {
         var nameOrEmail = $('#inputEmail').val()
         var password = $('#inputPassword').val()
         if (nameOrEmail) {
@@ -16,18 +16,19 @@ $(document).ready(function() {
                     },
                     dataType: 'json',
                     timeout: 10000,
-                    success: function(res) {
+                    success: function (res) {
                         $('#doLogin').removeClass('loading').removeAttr('disabled')
                         if (res.ok) {
-                            showAlert('success', '登陆成功！即将前往首页')
-                            setTimeout(function() {
-                                window.location.href = '/'
-                            }, 1000)
+                            showAlert('success', '登陆成功！')
+                            var backUrl = getParam('backUrl')
+                            setTimeout(function () {
+                                window.location.href = backUrl || '/'
+                            }, 800)
                         } else {
                             $('.err-tips').html(res.msg)
                         }
                     },
-                    error: function(err) {
+                    error: function (err) {
                         $('.err-tips').html('登陆失败')
                         $('#doLogin').removeClass('loading').removeAttr('disabled')
                     }
@@ -37,6 +38,13 @@ $(document).ready(function() {
             }
         } else {
             $('.err-tips').html('请输入用户名或者密码')
+        }
+    })
+
+    $(document).keypress(function (e) {
+        // 回车键事件  
+        if (e.which == 13) {
+            jQuery("#doLogin").click()
         }
     })
 })
