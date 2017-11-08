@@ -1,6 +1,7 @@
 extends layout
 
 block link
+  link(rel='stylesheet', href='/styles/datetimepicker.min.css')
   link(rel='stylesheet', href='/styles/personal.css')
 
 block content
@@ -42,7 +43,32 @@ block content
                                 a(href=history_arr[itemIndex].link, target="_blank")=history_arr[itemIndex].name
                                  |、
             div#history.tab-pane.fade(role='tabpanel', aria-labelledby='history-tab')
-              p
-                | Food truck fixie locavore, accusamus mcsweeney's marfa nulla single-origin coffee squid. Exercitation +1 labore velit, blog sartorial PBR leggings next level wes anderson artisan four loko farm-to-table craft beer twee. Qui photo booth letterpress, commodo enim craft beer mlkshk aliquip jean shorts ullamco ad vinyl cillum PBR. Homo nostrud organic, assumenda labore aesthetic magna delectus mollit. Keytar helvetica VHS salvia yr, vero magna velit sapiente labore stumptown. Vegan fanny pack odio cillum wes anderson 8-bit, sustainable jean shorts beard ut DIY ethical culpa terry richardson biodiesel. Art party scenester stumptown, tumblr butcher vero sint qui sapiente accusamus tattooed echo park.
+              form.form-inline(action='', role='form')
+                fieldset
+                  .form-group
+                    select#search-type.form-control
+                      option(value="0") 以关键字搜索
+                      option(value="0") 以时间搜索
+                  .form-group.start-date-group
+                    label.col-md-1.control-label(for='dtp_input2') 起始日期
+                    .input-group.date.form_date.col-md-3(data-date='', data-date-format='dd MM yyyy', data-link-field='dtp_input2', data-link-format='yyyy-mm-dd')
+                      input.form-control(size='16', type='text', value='', readonly='')
+                      span.input-group-addon
+                        span.glyphicon.glyphicon-calendar
+                    input#dtp_input2(type='hidden', value='')
+                  .form-group.start-date-group
+                    .input-group.date.form_date.col-md-3(data-date='', data-date-format='dd MM yyyy', data-link-field='dtp_input2', data-link-format='yyyy-mm-dd')
+                      input.form-control(size='16', type='text', value='', readonly='')
+                      span.input-group-addon
+                        span.glyphicon.glyphicon-calendar
+                    input#dtp_input2(type='hidden', value='')
+                  .form-group.start-date-group
+                    label.col-md-1.control-label(for='dtp_input2') 关键字
+                    input.form-control(type="text", placeholder="输入关键字")
+                  .form-group.start-date-group
+                    button.btn.btn-primary
+
+
 block script
+  script(type="text/javascript" src="/scripts/datetimepicker.min.js" charset="UTF-8")
   script(type="text/javascript" src="/scripts/personal.js")
