@@ -8,8 +8,8 @@ function bytesToSize(bytes) {
 
 $(document).ready(function() {
     $('#input2').filer({
-        limit: null,
-        maxSize: null,
+        limit: 1000,
+        maxSize: 1,
         extensions: null,
         changeInput: '<div class="jFiler-input-dragDrop"><div class="jFiler-input-inner"><div class="jFiler-input-icon"><i class="icon-jfi-cloud-up-o"></i></div><div class="jFiler-input-text"><h3>将文件拖动到此处</h3> <span style="display:inline-block; margin: 15px 0">或者</span></div><a class="jFiler-input-choose-btn blue">选择文件上传</a></div></div>',
         showThumbs: true,
@@ -84,9 +84,9 @@ $(document).ready(function() {
                 }
                 var parent = el.find(".jFiler-jProgressBar").parent();
                 el.find(".jFiler-jProgressBar").fadeOut("slow", function() {
-                    $("<div class=\"jFiler-item-others text-success\"><i class=\"icon-jfi-check-circle\"></i> Success  " + bytesToSize(data.data['x:size']) + "</div>").hide().appendTo(parent).fadeIn("slow");
-                })
-                // 点击弹出复制链接的弹窗
+                        $("<div class=\"jFiler-item-others text-success\"><i class=\"icon-jfi-check-circle\"></i> Success  " + bytesToSize(data.data['x:size']) + "</div>").hide().appendTo(parent).fadeIn("slow");
+                    })
+                    // 点击弹出复制链接的弹窗
                 $('.jFiler-item-thumb, .icon-jfi-paperclip').off('click').on('click', function(event) {
                     event.preventDefault()
                     var obj = $(this).parents('.jFiler-item').data('info')

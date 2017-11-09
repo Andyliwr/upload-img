@@ -67,7 +67,16 @@ block content
                     a.btn.btn-primary
                       i.glyphicon.glyphicon-search
                       | 搜索
-
+              table.table.table-bordered
+                thead
+                  th 文件名
+                  th 文件大小
+                  th 时间
+                  th 链接
+                tbody
+              div#paginator.pagination
+                    
 block script
   script(type="text/javascript" src="/scripts/datetimepicker.min.js" charset="UTF-8")
+  script(type="text/javascript" src="/scripts/jqpaginator.min.js")
   script(type="text/javascript" src="/scripts/personal.js")
