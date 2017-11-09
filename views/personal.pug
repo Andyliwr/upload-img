@@ -48,26 +48,25 @@ block content
                   .form-group
                     select#search-type.form-control
                       option(value="0") 以关键字搜索
-                      option(value="0") 以时间搜索
+                      option(value="1") 以时间搜索
                   .form-group.start-date-group
-                    label.col-md-1.control-label(for='dtp_input2') 起始日期
-                    .input-group.date.form_date.col-md-3(data-date='', data-date-format='dd MM yyyy', data-link-field='dtp_input2', data-link-format='yyyy-mm-dd')
-                      input.form-control(size='16', type='text', value='', readonly='')
+                    .input-group.date.form_date(data-date='', data-date-format='dd MM yyyy', data-link-field='dtp_input2', data-link-format='yyyy-mm-dd')
+                      input.form-control(size='16', type='text', value='', readonly='', placeholder="起始日期")
+                      span.input-group-addon
+                        span.glyphicon.glyphicon-calendar
+                    input#dtp_input1(type='hidden', value='')
+                  .form-group.end-date-group
+                    .input-group.date.form_date(data-date='', data-date-format='dd MM yyyy', data-link-field='dtp_input2', data-link-format='yyyy-mm-dd')
+                      input.form-control(size='16', type='text', value='', readonly='', placeholder="结束日期")
                       span.input-group-addon
                         span.glyphicon.glyphicon-calendar
                     input#dtp_input2(type='hidden', value='')
-                  .form-group.start-date-group
-                    .input-group.date.form_date.col-md-3(data-date='', data-date-format='dd MM yyyy', data-link-field='dtp_input2', data-link-format='yyyy-mm-dd')
-                      input.form-control(size='16', type='text', value='', readonly='')
-                      span.input-group-addon
-                        span.glyphicon.glyphicon-calendar
-                    input#dtp_input2(type='hidden', value='')
-                  .form-group.start-date-group
-                    label.col-md-1.control-label(for='dtp_input2') 关键字
+                  .form-group.search-group
                     input.form-control(type="text", placeholder="输入关键字")
-                  .form-group.start-date-group
-                    button.btn.btn-primary
-
+                  .form-group.button-group
+                    a.btn.btn-primary
+                      i.glyphicon.glyphicon-search
+                      | 搜索
 
 block script
   script(type="text/javascript" src="/scripts/datetimepicker.min.js" charset="UTF-8")

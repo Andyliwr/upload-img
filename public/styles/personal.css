@@ -162,3 +162,30 @@ aside {
 		opacity: 1;
 	}
 }
+
+#history .start-date-group, #history .end-date-group{
+	display: none;
+}
+
+#history{
+	margin: 20px 0;
+	font-size: 14px;
+}
+
+#history .form-control{
+	font-size: 14px;
+}
+
+#history .form-group{
+	margin-right: 20px;
+}
+
+#history .form-group>label{
+	margin-right: 10px;
+}
+
+#history .button-group .btn>i{
+	margin-right: 6px;
+	vertical-align: middle;
+	margin-top: -4px;
+}
