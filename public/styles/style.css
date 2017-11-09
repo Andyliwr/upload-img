@@ -21,7 +21,6 @@ body {
     padding: 0;
 }
 
-
 .content {
     box-sizing: border-box;
     /*为元素指定的任何内边距和边框都将在已设定的宽度和高度内进行绘制*/
@@ -719,13 +718,10 @@ span.jFiler-icon-file.f-audio:after {
     color: #fff;
     border: 2px dashed #fff;
     text-align: center;
-    -webkit-transition: box-shadow 0.3s,
-    border-color 0.3s;
-    -moz-transition: box-shadow 0.3s,
-    border-color 0.3s;
+    -webkit-transition: box-shadow 0.3s, border-color 0.3s;
+    -moz-transition: box-shadow 0.3s, border-color 0.3s;
     border-radius: 6px;
-    transition: box-shadow 0.3s,
-    border-color 0.3s;
+    transition: box-shadow 0.3s, border-color 0.3s;
     cursor: pointer;
 }
 
@@ -962,11 +958,16 @@ span.jFiler-icon-file.f-audio:after {
     nav[role="navigation"] .navbar-brand {
         padding-left: 15px;
     }
-    #upload-area {
-        left: 10%;
+    #index-container .bg {
+        padding: 20px;
+    }
+    .navbar {
+        height: auto;
+    }
+    .jFiler-input-dragDrop {
         margin-left: 0;
-        width: 80%;
-        color: #fff;
+        margin-right: 0 !important;
+        width: 100%;
     }
     #index-container .yasuo>span {
         display: block;
@@ -981,7 +982,6 @@ span.jFiler-icon-file.f-audio:after {
     #index-container .section .des {
         padding: 0 4%;
     }
-
     #about-container .stat {
         display: block;
         width: 80%;
@@ -990,7 +990,6 @@ span.jFiler-icon-file.f-audio:after {
     #about-container .stat:nth-child(2) {
         margin-top: 10px;
     }
-
     #about-container .markdown-body img {
         width: 90%;
     }
