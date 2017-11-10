@@ -199,3 +199,8 @@ aside {
 #history .table th {
     text-align: center;
 }
+
+#history #no-data{
+    display: none;
+    text-align: center;
+}

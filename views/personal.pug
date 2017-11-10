@@ -22,7 +22,6 @@ block content
           div#myTabContent.tab-content
             div#load.tab-pane.fade.active.in(role='tabpanel', aria-labelledby='load-tab')
               .timeline
-                
                 - for (var loadIndex in load)
                   article
                     h3
@@ -75,6 +74,7 @@ block content
                   th 时间
                   th 链接
                 tbody
+              div#no-data 暂无数据
               div#paginator.pagination
                     
 block script

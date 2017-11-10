@@ -24,18 +24,26 @@ function search(num) {
             if (res.ok) {
                 // 渲染dom
                 var html = ""
-                res.list.forEach(item => {
-                    html += '<tr><td>' + item.old_filename + '</td><td>' + item.filesize + '</td><td>' + item.time + '</td><td>' + item.remote_url + '</td></tr>'
-                })
-                $('#history .table tbody').html(html)
-                $('#paginator').jqPaginator('option', {
-                    totalPages: Math.ceil(res.total / 10),
-                    totalCounts: res.total,
-                    currentPage: 1,
-                    onPageChange: function(num, type) {
-                        search(num)
-                    }
-                })
+                if(res.list.length > 0){
+                    $('#paginator').show()
+                    $('#no-data').hide()
+                    res.list.forEach(item => {
+                        html += '<tr><td>' + item.old_filename + '</td><td>' + item.filesize + '</td><td>' + item.time + '</td><td>' + item.remote_url + '</td></tr>'
+                    })
+                    $('#history .table tbody').html(html)
+                    $('#paginator').jqPaginator('option', {
+                        totalPages: Math.ceil(res.total / 10) || 1,
+                        totalCounts: res.total || 1,
+                        currentPage: 1,
+                        onPageChange: function(num, type) {
+                            search(num)
+                        }
+                    })
+                }else{
+                    $('#no-data').show()
+                    $('#paginator').hide()
+                }
+                
             } else {
                 showAlert('error', res.msg)
             }
@@ -61,16 +69,23 @@ function getList(page, limit) {
             if (res.ok) {
                 // 渲染dom
                 var html = ""
-                res.list.forEach(item => {
-                    html += '<tr><td>' + item.old_filename + '</td><td>' + item.filesize + '</td><td>' + item.time + '</td><td>' + item.remote_url + '</td></tr>'
-                })
-                $('#history .table tbody').html(html)
-                $('#paginator').jqPaginator('option', {
-                    totalPages: Math.ceil(res.total / 10),
-                    totalCounts: res.total,
-                    currentPage: page
-                })
-                currentPage = page
+                if(res.list.length > 0){
+                    $('#paginator').show()
+                    $('#no-data').hide()
+                    res.list.forEach(item => {
+                        html += '<tr><td>' + item.old_filename + '</td><td>' + item.filesize + '</td><td>' + item.time + '</td><td>' + item.remote_url + '</td></tr>'
+                    })
+                    $('#history .table tbody').html(html)
+                    $('#paginator').jqPaginator('option', {
+                        totalPages: Math.ceil(res.total / 10) || 1,
+                        totalCounts: res.total || 1,
+                        currentPage: page
+                    })
+                    currentPage = page
+                }else{
+                    $('#no-data').show()
+                    $('#paginator').hide()
+                }
             } else {
                 showAlert('error', res.msg)
             }
@@ -134,6 +149,7 @@ $(document).ready(function() {
 
     // 获取历史纪录,初始化分页
     $('#paginator').jqPaginator({
+        totalPages: 1,
         totalCounts: 1,
         pageSize: 10,
         visiblePages: 10,
@@ -151,4 +167,9 @@ $(document).ready(function() {
     $('.button-group > a').on('click', function() {
         search(1)
     })
+
+    // 是否直接显示history页面
+    if(window.location.hash == '#history'){
+        $('#history-tab').trigger('click')
+    }
 })
