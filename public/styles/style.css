@@ -993,4 +993,14 @@ span.jFiler-icon-file.f-audio:after {
     #about-container .markdown-body img {
         width: 90%;
     }
+    #user-container .left>img{
+        display: inline-block;
+        margin-right: 10px;
+    }
+    #user-container .left .info{
+        display: inline-block;
+    }
+    #user-container .timeline{
+        width: 100%;
+    }
 }

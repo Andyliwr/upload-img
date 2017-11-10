@@ -9,8 +9,9 @@ block content
     div.row
       div.left.col-xs-12.col-sm-3
         img.img-rounded(src=user.avatar, alt=user.username)
-        p.name=user.username
-        p.email=user.email
+        div.info
+          p.name=user.username
+          p.email=user.email
       div.right.col-xs-12.col-sm-9
         div.personal.personal-tabs(data-example-id='togglable-tabs')
           ul#myTabs.nav.nav-tabs(role='tablist')
