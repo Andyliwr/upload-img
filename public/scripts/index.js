@@ -32,7 +32,7 @@ $(document).ready(function() {
                                             <li>{{fi-progressBar}}</li>\
                                         </ul>\
                                         <ul class="list-inline pull-right">\
-                                            <li><a class="icon-jfi-paperclip" data-toggle="modal" data-target="#myModal"></a></li>\
+                                            <li><a class="icon-jfi-paperclip"></a></li>\
                                             <li><a class="icon-jfi-trash jFiler-item-trash-action"></a></li>\
                                         </ul>\
                                     </div>\
@@ -54,7 +54,7 @@ $(document).ready(function() {
                                             <span class="jFiler-item-others">{{fi-icon}} {{fi-size2}}</span>\
                                         </ul>\
                                         <ul class="list-inline pull-right">\
-                                            <li><a class="icon-jfi-paperclip" data-toggle="modal" data-target="#myModal"></a></li>\
+                                            <li><a class="icon-jfi-paperclip"></a></li>\
                                             <li><a class="icon-jfi-trash jFiler-item-trash-action"></a></li>\
                                         </ul>\
                                     </div>\
@@ -84,43 +84,15 @@ $(document).ready(function() {
                 }
                 var parent = el.find(".jFiler-jProgressBar").parent();
                 el.find(".jFiler-jProgressBar").fadeOut("slow", function() {
-                        $("<div class=\"jFiler-item-others text-success\"><i class=\"icon-jfi-check-circle\"></i> Success  " + bytesToSize(data.data['x:size']) + "</div>").hide().appendTo(parent).fadeIn("slow");
-                    })
-                    // 点击弹出复制链接的弹窗
-                $('.jFiler-item-thumb, .icon-jfi-paperclip').off('click').on('click', function(event) {
-                    event.preventDefault()
-                    var obj = $(this).parents('.jFiler-item').data('info')
-                    $('#myModal .table td[data-type="url"]').html(obj.url)
-                    $('#myModal .table td[data-type="md"]').html('![](' + obj.url + ')')
-                    $('#myModal .table td[data-type="html"]').text('<img src="' + obj.url + '" alt="" />')
-                    $('#myModal .table td[data-type="url"]+td .btn').attr('data-clipboard-text', obj.url)
-                    $('#myModal .table td[data-type="md"]+td .btn').attr('data-clipboard-text', '![](' + obj.url + ')')
-                    $('#myModal .table td[data-type="html"]+td .btn').attr('data-clipboard-text', '<img src="' + obj.url + '" alt="" />')
-                    var clipboard_url = new Clipboard('#btn_copy_url');
-                    clipboard_url.on('success', function(e) {
-                        $('#myModal .table .op .btn>i').removeClass('icon-jfi-check').addClass('icon-jfi-files-o')
-                        $('#myModal .table .op .btn>span').html('复制')
-                        $(e.trigger).children('i').removeClass('icon-jfi-files-o').addClass('icon-jfi-check')
-                        $(e.trigger).children('span').html('已复制')
-                        e.clearSelection();
-                    });
-                    var clipboard_md = new Clipboard('#btn_copy_md');
-                    clipboard_md.on('success', function(e) {
-                        $('#myModal .table .op .btn>i').removeClass('icon-jfi-check').addClass('icon-jfi-files-o')
-                        $('#myModal .table .op .btn>span').html('复制')
-                        $(e.trigger).children('i').removeClass('icon-jfi-files-o').addClass('icon-jfi-check')
-                        $(e.trigger).children('span').html('已复制')
-                        e.clearSelection();
-                    });
-                    var clipboard_html = new Clipboard('#btn_copy_html');
-                    clipboard_html.on('success', function(e) {
-                        $('#myModal .table .op .btn>i').removeClass('icon-jfi-check').addClass('icon-jfi-files-o')
-                        $('#myModal .table .op .btn>span').html('复制')
-                        $(e.trigger).children('i').removeClass('icon-jfi-files-o').addClass('icon-jfi-check')
-                        $(e.trigger).children('span').html('已复制')
-                        e.clearSelection();
-                    });
+                    $("<div class=\"jFiler-item-others text-success\"><i class=\"icon-jfi-check-circle\"></i> Success  " + bytesToSize(data.data['x:size']) + "</div>").hide().appendTo(parent).fadeIn("slow");
                 })
+                el.find(".icon-jfi-paperclip").attr('id', data.data.hash)
+                el.find(".icon-jfi-paperclip").attr('data-clipboard-text', data.data.url)
+                var clipboard_url = new Clipboard('#' + data.data.hash);
+                clipboard_url.on('success', function(e) {
+                    showAlert('success', '图片地址复制成功!')
+                    e.clearSelection();
+                });
             },
             error: function(el) {
                 var parent = el.find(".jFiler-jProgressBar").parent()

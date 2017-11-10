@@ -1,4 +1,6 @@
 import { User } from '../models'
+import crypto from 'crypto'
+import Identicon from 'identicon.js'
 
 export default function (router) {
     router.post('/api/signin', async (ctx, next) => {
@@ -12,9 +14,12 @@ export default function (router) {
         if (password !== repassword) {
             ctx.body = { ok: false, msg: '两次密码不一致', user: null }
         } else {
+            let hash = crypto.createHash('md5')
+            hash.update(username);
+            let imgData = new Identicon(hash.digest('hex')).toString()
             let user = new User({
                 username: username,
-                avatar: 'https://dummyimage.com/100x100/4A7BF7&text=' + username.substring(0, 1),
+                avatar: 'data:image/png;base64,'+imgData,
                 email: email,
                 password: password,
                 history: [],
