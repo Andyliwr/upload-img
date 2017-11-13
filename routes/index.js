@@ -25,12 +25,6 @@ router.get('/registe', async(ctx, next) => {
     })
 })
 
-router.get('/help', async(ctx, next) => {
-    await ctx.render('help', {
-        title: '使用帮助'
-    })
-})
-
 router.get('/about', async(ctx, next) => {
     let userNum = await User.count()
     let historyNum = await History.count()

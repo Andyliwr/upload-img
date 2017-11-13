@@ -7,9 +7,9 @@ html(lang="zh-cn")
     meta(name="description",content="图片上传，小迪版图片上传，图片压缩，上传历史，图片裁剪")
     meta(name="Andyliwr",content="李迪康，大前端，启明工作室创始人")
     title= title
-    link(rel="icon",href="../../favicon.ico")
-    link(rel="stylesheet",href="/styles/bootstrap.min.css")
-    link(rel='stylesheet', href='/styles/style.css')
+    link(rel="icon",href="http://fs.andylistudio.com/source/img/favicon.ico")
+    link(rel="stylesheet",href="http://fs.andylistudio.com/source/css/bootstrap.min.css")
+    link(rel='stylesheet', href='http://fs.andylistudio.com/source/css/style.min.css')
     block link
 body(data-spy="scroll",data-target=".scrollspy")
   div.content
@@ -27,7 +27,7 @@ body(data-spy="scroll",data-target=".scrollspy")
             span.icon-bar
             span.icon-bar
           a.navbar-brand(href="/")
-           img#logo(src="/images/logo.svg")
+           img#logo(src="http://fs.andylistudio.com/source/img/logo.svg")
            span 图片上传
         div#top-navbar-collapse.collapse.navbar-collapse
           ul.nav.navbar-nav.main-nav
@@ -74,8 +74,17 @@ body(data-spy="scroll",data-target=".scrollspy")
         a(href="mailto:andyliwr@outlook.com") @andyliwr.
         p 本项目源码受MIT开源协议保护。
   block extra
-
-  script(type="text/javascript" src="/jquery/dist/jquery.min.js")
-  script(type="text/javascript" src="/bootstrap/dist/js/bootstrap.min.js")
-  script(type="text/javascript" src="/scripts/share.js")
+  
+  script.
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?fce3ed6e7dcd2bb29035c0da9b50791b";
+      var s = document.getElementsByTagName("script")[0]; 
+      s.parentNode.insertBefore(hm, s);
+    })();
+  script(type="text/javascript" src="http://fs.andylistudio.com/source/js/jquery.min.js")
+  script(type="text/javascript" src="http://fs.andylistudio.com/source/js/bootstrap.min.js")
+  script(type="text/javascript" src="http://fs.andylistudio.com/source/js/share.min.js")
+  
   block script

@@ -1,4 +1,3 @@
-@import url('../fonts/jquery-filer.css');
 @font-face {
     font-family: 'webfont';
     src: url('//at.alicdn.com/t/webfont_x4rf8lst8s62yb9.eot');
@@ -108,7 +107,7 @@ a {
 }
 
 #index-container .bg {
-    background: url(http://oyh0gj8ht.bkt.clouddn.com//index/bg/bg01.jpg) no-repeat;
+    background: url(http://fs.andylistudio.com/source/img/bg01.jpg) no-repeat;
     background-size: cover;
     background-position: center;
     z-index: -1;

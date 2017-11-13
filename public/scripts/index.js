@@ -20,7 +20,7 @@ $(document).ready(function() {
             item: '<li class="jFiler-item">\
                             <div class="jFiler-item-container">\
                                 <div class="jFiler-item-inner">\
-                                    <div class="jFiler-item-thumb" data-toggle="modal" data-target="#myModal">\
+                                    <div class="jFiler-item-thumb">\
                                         <div class="jFiler-item-status"></div>\
                                         <div class="jFiler-item-info">\
                                             <span class="jFiler-item-title"><b title="{{fi-name}}">{{fi-name | limitTo: 25}}</b></span>\
@@ -42,7 +42,7 @@ $(document).ready(function() {
             itemAppend: '<li class="jFiler-item">\
                             <div class="jFiler-item-container">\
                                 <div class="jFiler-item-inner">\
-                                    <div class="jFiler-item-thumb" data-toggle="modal" data-target="#myModal">\
+                                    <div class="jFiler-item-thumb">\
                                         <div class="jFiler-item-status"></div>\
                                         <div class="jFiler-item-info">\
                                             <span class="jFiler-item-title"><b title="{{fi-name}}">{{fi-name | limitTo: 25}}</b></span>\
@@ -86,10 +86,17 @@ $(document).ready(function() {
                 el.find(".jFiler-jProgressBar").fadeOut("slow", function() {
                     $("<div class=\"jFiler-item-others text-success\"><i class=\"icon-jfi-check-circle\"></i> Success  " + bytesToSize(data.data['x:size']) + "</div>").hide().appendTo(parent).fadeIn("slow");
                 })
+                el.find(".jFiler-item-container").attr('id', data.data.hash + '1')
+                el.find(".jFiler-item-container").attr('data-clipboard-text', data.data.url)
+                var clipboard_url1 = new Clipboard('#' + data.data.hash + '1');
+                clipboard_url1.on('success', function(e) {
+                    showAlert('success', '图片地址复制成功!')
+                    e.clearSelection();
+                });
                 el.find(".icon-jfi-paperclip").attr('id', data.data.hash)
                 el.find(".icon-jfi-paperclip").attr('data-clipboard-text', data.data.url)
-                var clipboard_url = new Clipboard('#' + data.data.hash);
-                clipboard_url.on('success', function(e) {
+                var clipboard_url2 = new Clipboard('#' + data.data.hash);
+                clipboard_url2.on('success', function(e) {
                     showAlert('success', '图片地址复制成功!')
                     e.clearSelection();
                 });
