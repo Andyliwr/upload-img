@@ -37,13 +37,15 @@ npm run prd
 #### **首页**
 <img src="https://fs.andylistudio.com/1521210473840.jpg/default" />
 
-![首页](https://fs.andylistudio.com/1521210473840.jpg/default)
 #### **拖拽上传**
-![拖拽上传](https://fs.andylistudio.com/1521210471220.jpg/default)
+<img src="https://fs.andylistudio.com/1521210471220.jpg/default" />
+
 #### **注册**
-![注册](https://fs.andylistudio.com/1521210480561.jpg/default)
+<img src="https://fs.andylistudio.com/1521210480561.jpg/default" />
+
 #### **上传记录**
-![上传记录](https://fs.andylistudio.com/1521210477738.jpg/default)
+<img src="https://fs.andylistudio.com/1521210477738.jpg/default" />
+
 
 
 
