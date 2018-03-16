@@ -12,7 +12,7 @@ const client = qn.create({
     accessKey: config.accessKey,
     secretKey: config.secretKey,
     bucket: 'upload',
-    origin: 'http://fs.andylistudio.com',
+    origin: 'https://fs.andylistudio.com',
 });
 
 export default function(router) {
