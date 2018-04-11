@@ -2,7 +2,8 @@ extends layout
 
 block link
   link(rel='stylesheet', href='http://fs.andylistudio.com/datetimepicker.min.css')
-  link(rel='stylesheet', href='http://fs.andylistudio.com/source/css/personal.min.css')
+  //- link(rel='stylesheet', href='http://fs.andylistudio.com/source/css/personal.min.css')
+  link(rel='stylesheet', href='/styles/personal.css')
 
 block content
   div#user-container.container
@@ -19,6 +20,8 @@ block content
               a#load-tab(href='#load', role='tab', data-toggle='tab', aria-controls='load', aria-expanded='true') 我的历程
             li(role='presentation')
               a#history-tab(href='#history', role='tab', data-toggle='tab', aria-controls='history', aria-expanded='false') 上传历史
+            li(role='presentation')
+              a#setting-tab(href='#setting', role='tab', data-toggle='tab', aria-controls='setting', aria-expanded='false') 设置
           div#myTabContent.tab-content
             div#load.tab-pane.fade.active.in(role='tabpanel', aria-labelledby='load-tab')
               .timeline
@@ -41,7 +44,8 @@ block content
                               - var history_arr = load[loadIndex].items[dayIndex].upload_arr
                               - for (var itemIndex in history_arr)
                                 a(href=history_arr[itemIndex].link, target="_blank")=history_arr[itemIndex].name
-                                 |、
+                                if itemIndex < (history_arr.length - 1)
+                                  |、
             div#history.tab-pane.fade(role='tabpanel', aria-labelledby='history-tab')
               form.form-inline(action='', role='form')
                 fieldset
@@ -76,8 +80,15 @@ block content
                 tbody
               div#no-data 暂无数据
               div#paginator.pagination
-                    
+            div#setting.tab-pane.fade(role='tabpanel', aria-labelledby='setting-tab')
+              div.options
+                div.option
+                  input(type="checkbox" name="is-yasuo" id="isyasuo")
+                  | 是否开启压缩
+              div.buttons
+                button#save.btn.btn-primary 保存
 block script
   script(type="text/javascript" src="http://fs.andylistudio.com/source/js/datetimepicker.min.js" charset="UTF-8")
   script(type="text/javascript" src="http://fs.andylistudio.com/source/js/jqpaginator.min.js")
-  script(type="text/javascript" src="http://fs.andylistudio.com/source/js/personal.min.js")
+  //- script(type="text/javascript" src="http://fs.andylistudio.com/source/js/personal.min.js")
+  script(type="text/javascript" src="/scripts/personal.js")

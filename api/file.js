@@ -24,11 +24,13 @@ export default function(router) {
         if (ctx.state.user) {
             // 是否启用图片压缩
             let isYaSuo = false
+            console.log('####', ctx.state.user.settings)
             ctx.state.user.settings.forEach(item => {
                 if ((item.stname === 'compress') && item.value) {
                     isYaSuo = true
                 }
             })
+            console.log('@@@@', isYaSuo)
             if (isYaSuo) {
                 for (let i = 0; i < ctx.request.files.length; i++) {
                     let uploadType = ''
@@ -49,6 +51,8 @@ export default function(router) {
                         case 'image/bmp':
                             uploadType = '.bmp'
                             break
+                        case 'text/plain':
+                            uploadType = '.txt'
                         default:
                             break
                     }
@@ -193,6 +197,8 @@ export default function(router) {
                     case 'image/bmp':
                         uploadType = '.bmp'
                         break
+                    case 'text/plain':
+                        uploadType = '.txt'
                     default:
                         break
                 }

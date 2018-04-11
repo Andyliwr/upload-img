@@ -28,7 +28,7 @@ function search(num) {
                     $('#paginator').show()
                     $('#no-data').hide()
                     res.list.forEach(item => {
-                        html += '<tr><td>' + item.old_filename + '</td><td>' + item.filesize + '</td><td>' + item.time + '</td><td>' + item.remote_url + '</td></tr>'
+                        html += '<tr><td>' + item.old_filename + '</td><td>' + item.filesize + '</td><td>' + item.time + '</td><td><a href="' + item.remote_url + '" target="_blank">' + item.remote_url + '</a></td></tr>'
                     })
                     $('#history .table tbody').html(html)
                     $('#paginator').jqPaginator('option', {
@@ -172,4 +172,6 @@ $(document).ready(function() {
     if(window.location.hash == '#history'){
         $('#history-tab').trigger('click')
     }
+
+    // 监听设置的保存按钮点击事件
 })

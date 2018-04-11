@@ -200,7 +200,20 @@ aside {
     text-align: center;
 }
 
-#history #no-data{
+#history #no-data {
     display: none;
     text-align: center;
+}
+
+#setting {
+    padding-top: 20px;
+}
+
+#setting .option {
+    height: 30px;
+    line-height: 30px;
+}
+
+#setting .buttons {
+    margin-top: 30px;
 }
