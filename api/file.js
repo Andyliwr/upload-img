@@ -59,6 +59,7 @@ export default function(router) {
                     } else {
                         compressUrl = ctx.request.files[i].path
                     }
+                    console.log('====>', ctx.request.files[i].type)
                     if (uploadType) {
                         try {
                             return new Promise((resolve, reject) => {
@@ -122,9 +123,12 @@ export default function(router) {
                         case 'image/bmp':
                             uploadType = '.bmp'
                             break
+                        case 'text/plain':
+                            uploadType = '.txt'
                         default:
                             break
                     }
+                    console.log('---->', ctx.request.files[i].type)
                     if (uploadType) {
                         try {
                             return new Promise((resolve, reject) => {
@@ -192,6 +196,7 @@ export default function(router) {
                     default:
                         break
                 }
+                console.log('****>', ctx.request.files[i].type)
                 if (uploadType) {
                     try {
                         return new Promise((resolve, reject) => {

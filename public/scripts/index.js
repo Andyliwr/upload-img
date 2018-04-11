@@ -90,14 +90,14 @@ $(document).ready(function() {
                 el.find(".jFiler-item-container").attr('data-clipboard-text', data.data.url)
                 var clipboard_url1 = new Clipboard('#' + data.data.hash + '1');
                 clipboard_url1.on('success', function(e) {
-                    showAlert('success', '图片地址复制成功!')
+                    showAlert('success', '地址复制成功!')
                     e.clearSelection();
                 });
                 el.find(".icon-jfi-paperclip").attr('id', data.data.hash)
                 el.find(".icon-jfi-paperclip").attr('data-clipboard-text', data.data.url)
                 var clipboard_url2 = new Clipboard('#' + data.data.hash);
                 clipboard_url2.on('success', function(e) {
-                    showAlert('success', '图片地址复制成功!')
+                    showAlert('success', '地址复制成功!')
                     e.clearSelection();
                 });
             },
@@ -127,7 +127,7 @@ $(document).ready(function() {
             button: "选择文件",
             feedback: "选中文件上传",
             feedback2: "文件已经被选中",
-            drop: "拖放图片或者点击上传",
+            drop: "拖放文件或者点击上传",
             removeConfirmation: "确定要删除此文件吗?",
             errors: {
                 filesLimit: "Only {{fi-limit}} files are allowed to be uploaded.",
