@@ -62,7 +62,8 @@ router.get('/user', async(ctx, next) => {
             title: '个人中心',
             load: load,
             registe_time: moment(thisUser.registe_time.getTime()).format("YYYY-MM-DD"),
-            hasUpload: hasUpload
+            hasUpload: hasUpload,
+            settings: thisUser.settings
         })
     } else {
         ctx.status = 301

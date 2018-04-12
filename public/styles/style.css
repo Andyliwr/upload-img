@@ -107,7 +107,7 @@ a {
 }
 
 #index-container .bg {
-    background: url(http://fs.andylistudio.com/source/img/bg01.jpg) no-repeat;
+    background: url(//fs.andylistudio.com/source/img/bg01.jpg) no-repeat;
     background-size: cover;
     background-position: center;
     z-index: -1;

@@ -16,7 +16,6 @@ historySchema.statics.add = async function (history, needUpdateUser) {
     if (a) {
         if (needUpdateUser) {
             let b = await User.update({ _id: history.userid }, { '$addToSet': { history: history.id } })
-            console.log('插入history后，更新User: ', b)
             if (b.ok == 1 && b.nModified == 1) {
                 return 1
             } else {

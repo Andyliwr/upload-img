@@ -1,9 +1,8 @@
 extends layout
 
 block link
-  link(rel='stylesheet', href='http://fs.andylistudio.com/datetimepicker.min.css')
-  //- link(rel='stylesheet', href='http://fs.andylistudio.com/source/css/personal.min.css')
-  link(rel='stylesheet', href='/styles/personal.css')
+  link(rel='stylesheet', href='//fs.andylistudio.com/datetimepicker.min.css')
+  link(rel='stylesheet', href='//fs.andylistudio.com/source/v2/css/personal.min.css')
 
 block content
   div#user-container.container
@@ -83,12 +82,15 @@ block content
             div#setting.tab-pane.fade(role='tabpanel', aria-labelledby='setting-tab')
               div.options
                 div.option
-                  input(type="checkbox" name="is-yasuo" id="isyasuo")
+                  input(type="checkbox", name="compress", id="compress", checked=settings[0] && settings[0].value)
                   | 是否开启压缩
+                div.option
+                  input(type="checkbox", name="define", id="define", checked=settings[1] && settings[1].value)
+                  | 是否自定义文件名和路径
+                  input(type="text", name="path", id="path", placeholder="请输入路径", value=((settings[2] && settings[2].value) ? settings[2].value : ''))
               div.buttons
                 button#save.btn.btn-primary 保存
 block script
-  script(type="text/javascript" src="http://fs.andylistudio.com/source/js/datetimepicker.min.js" charset="UTF-8")
-  script(type="text/javascript" src="http://fs.andylistudio.com/source/js/jqpaginator.min.js")
-  //- script(type="text/javascript" src="http://fs.andylistudio.com/source/js/personal.min.js")
-  script(type="text/javascript" src="/scripts/personal.js")
+  script(type="text/javascript" src="//fs.andylistudio.com/source/js/datetimepicker.min.js" charset="UTF-8")
+  script(type="text/javascript" src="//fs.andylistudio.com/source/js/jqpaginator.min.js")
+  script(type="text/javascript" src="//fs.andylistudio.com/source/v2/js/personal.min.js")

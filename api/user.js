@@ -63,4 +63,37 @@ export default function (router) {
             ctx.body = { ok: true, msg: '邮箱合法' }
         }
     })
+
+    // 更新用户设置
+    router.post('/api/setting', async (ctx, next) => {
+        // format params
+        if(ctx.request.body && ctx.request.body.setting instanceof Array){
+            let settings = ctx.request.body.setting.map(item => {
+                return {
+                    stname: item.stname,
+                    value: item.value === 'false' ? false : (item.value === 'true' ? true : item.value)
+                }
+            })
+            let update = await User.update({ _id: ctx.session.user._id }, {$set: {
+                settings
+            }})
+            if(update.ok){
+                ctx.session.user.settings = settings
+                ctx.body = {
+                    ok: true,
+                    msg: '更新设置成功'
+                } 
+            }else{
+                ctx.body = {
+                    ok: false,
+                    msg: '更新设置失败'
+                }
+            }
+        } else {
+            ctx.body = {
+                ok: false,
+                msg: '参数不合法'
+            }
+        }
+    })
 }
