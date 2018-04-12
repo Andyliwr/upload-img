@@ -53,6 +53,12 @@ export default function(router) {
                             uploadType = '.txt'
                             break
                         default:
+                            // 取最后一项
+                            let reg = /\.\w+$/i
+                            let result = ctx.request.files[i].name.match(reg)
+                            if(result){
+                                uploadType = ctx.request.files[i].name.match(reg)[0]
+                            }
                             break
                     }
                     let compressObj = await minify(ctx.request.files[i].path)
@@ -154,9 +160,9 @@ export default function(router) {
                         default:
                             // 取最后一项
                             let reg = /\.\w+$/i
-                            let result = ctx.request.files[i].type.match(reg)
+                            let result = ctx.request.files[i].name.match(reg)
                             if(result){
-                                uploadType = ctx.request.files[i].type.match(reg)[0]
+                                uploadType = ctx.request.files[i].name.match(reg)[0]
                             }
                             break
                     }
@@ -190,7 +196,6 @@ export default function(router) {
                             }else{
                                 key = (new Date()).getTime() + uploadType
                             }
-                            console.log(key)
                             client.uploadFile(ctx.request.files[i].path, { key }, function(err, result) {
                                 if (err) {
                                     console.log(err)
@@ -255,42 +260,15 @@ export default function(router) {
                     default:
                         // 取最后一项
                         let reg = /\.\w+$/i
-                        let result = ctx.request.files[i].type.match(reg)
+                        let result = ctx.request.files[i].name.match(reg)
                         if(result){
-                            uploadType = ctx.request.files[i].type.match(reg)[0]
+                            uploadType = ctx.request.files[i].name.match(reg)[0]
                         }
                         break
                 }
                 try {
                     return new Promise((resolve, reject) => {
-                        let key = ''
-                        const isUserDefineSetting = ctx.session.user.settings.filter(item => {
-                            return item.stname === 'define'
-                        })[0]
-                        const isUserDefine = isUserDefineSetting ? isUserDefineSetting.value : false
-                        const pathNameSetting = ctx.session.user.settings.filter(item => {
-                            return item.stname === 'path'
-                        })[0]
-                        let pathName = pathNameSetting ? pathNameSetting.value : ''
-                        if(pathName){
-                            let pathArray = pathName.split('')
-                            if(pathArray[0] === '/'){
-                                pathArray.splice(0, 1)
-                            }
-                            if(pathArray[pathArray.length - 1] && pathArray[pathArray.length - 1] !== '/'){
-                                pathArray.splice(pathArray.length, 0, '/')
-                            }
-                            pathName = pathArray.join('')
-                        }
-                        if(isUserDefine){
-                            if(pathName){
-                                key = pathName + ctx.request.files[i].name
-                            }else{
-                                key = ctx.request.files[i].name
-                            }
-                        }else{
-                            key = (new Date()).getTime() + uploadType
-                        }
+                        let key = (new Date()).getTime() + uploadType
                         client.uploadFile(ctx.request.files[i].path, { key }, function(err, result) {
                             if (err) {
                                 return reject(err)
