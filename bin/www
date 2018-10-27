@@ -10,11 +10,18 @@ var server = null
 var port = normalizePort(config.port || '3000');
 
 async function connectMongo() {
-    mongoose.Promise = global.Promise
-    mongoose.connection.on('error', console.error.bind(console, '连接数据库失败'))
-    return await mongoose.connect(config.mongo_url, {
-        useMongoClient: true,
-    })
+  mongoose.Promise = global.Promise
+  mongoose.connection.on('error', console.error.bind(console, '连接数据库失败'))
+  console.log('start to connect')
+  return await mongoose.connect(
+    config.mongo_url,
+    {
+      user: config.mongo_user,
+      pass: config.mongo_pass,
+      auth: { authdb: config.mongo_dbname, authMechanism: 'MONGODB-CR' },
+      useMongoClient: true
+    }
+  )
 }
 
 connectMongo().then(() => {

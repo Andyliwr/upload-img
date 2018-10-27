@@ -1,10 +1,16 @@
 const Redis = require("ioredis")
+const config = require('../config')
 const { Store } = require("koa-session2")
 
 class RedisStore extends Store {
   constructor() {
     super();
-    this.redis = new Redis(6379, 'localhost')
+    this.redis = new Redis({
+      port: config.redis_port, // Redis port
+      host: config.redis_host, // Redis host
+      family: 4, // 4 (IPv4) or 6 (IPv6)
+      password: config.redis_pass
+    })
   }
 
   async get(sid, ctx) {
