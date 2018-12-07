@@ -1,5 +1,5 @@
 ## **小迪版图片上传工具**
-[Demo地址](http://upload.andylistudio.com)
+[Demo地址](https://upload.andylistudio.com)
 ### **小迪图片上传工具特色**
 1. **拖拽上传**
 <br>将本地图片拖放到白框中就能实现图片自动上传，也可以选择手动打开文件上传，两种方式任君选择。
